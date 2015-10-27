@@ -1,0 +1,220 @@
+@import 'variables';
+
+.modalwin {
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    z-index: 6000;
+
+    background-color: rgba(#000, 0.8);
+
+    &.-hidden {
+        display: none;
+        }
+
+    &[data-type="create"] [data-modal-type]:not([data-modal-type*="create"]) {
+        display: none;
+        }
+
+    &[data-type="edit"] [data-modal-type]:not([data-modal-type*="edit"]) {
+        display: none;
+        }
+    }
+
+.modalwin__body {
+    width: 620px - (30px * 2);
+    padding: 30px;
+    margin-left: -310px;
+    top: 10%;
+    left: 50%;
+    position: absolute;
+    z-index: 5000;
+
+    background-color: #fff;
+    }
+
+.modalwin__close {
+    height: 19px;
+    width: 19px;
+    top: 30px;
+    right: 25px;
+    position: absolute;
+
+    line-height: 19px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #b5b5b5;
+    text-align: center;
+
+    cursor: pointer;
+
+    &:hover {
+        color: #000;
+        }
+    }
+
+.modalwin__field {
+    padding: 10px 0;
+
+    border-bottom: 1px solid #e9e9e9;
+
+    font-size: 0;
+
+    label {
+        width: 200px;
+        padding-left: 60px;
+        height: 24px;
+        display: inline-block;
+
+        box-sizing: border-box;
+        background-repeat: no-repeat;
+        background-position: 34px;
+
+        line-height: 24px;
+        font-size: 16px;
+        font-weight: normal;
+        color: #7f7f7f;
+
+        vertical-align: middle;
+        }
+
+    &.modalwin__field--keywords label {
+        background-image: url('/static/images/icon-modalwin-keywords.png');
+        }
+
+    &.modalwin__field--categories label {
+        background-image: url('/static/images/icon-modalwin-categories.png');
+        }
+
+    &.modalwin__field--locations label {
+        background-image: url('/static/images/icon-modalwin-locations.png');
+        }
+
+    &.modalwin__field--languages label {
+        background-image: url('/static/images/icon-modalwin-languages.png');
+        }
+
+    &.modalwin__field--title label {
+        background-image: url('/static/images/icon-modalwin-title.png');
+        }
+    }
+
+.modalwin__field__block {
+    width: 300px;
+    height: 24px;
+    display: inline-block;
+
+    line-height: 24px;
+
+    vertical-align: middle;
+
+    input {
+        width: 100%;
+        height: 26px;
+        padding: 0 10px;
+        margin-top: -1px;
+
+        border: 1px solid #d3d3d3;
+        background-color: #e9e9e9;
+
+        line-height: 26px;
+        font-size: 14px;
+        color: #5c5c5c;
+
+        &::placeholder {
+            color: #a4a4a4;
+            }
+        }
+
+    select {
+        width: 100%;
+        }
+    }
+
+.modalwin__footer {
+    height: 27px;
+    margin-top: 10px;
+
+    button {
+        min-width: 65px;
+        height: 27px;
+        padding: 0 10px;
+        display: inline-block;
+
+        box-sizing: border-box;
+        border-radius: 3px;
+        border: 1px solid #d3d3d3;
+        background-color: #e9e9e9;
+
+        line-height: 25px;
+        font-family: $font-special;
+        color: #464646;
+        text-align: center;
+
+        &.-red {
+            border: 0;
+            background-color: #901a28;
+
+            color: #fff;
+            }
+        }
+
+    .static-page form & button[type="submit"] {
+        padding: 0 10px;
+        margin-top: 0;
+        margin-left: 10px;
+        vertical-align: top;
+        }
+    }
+
+.modalwin__footer__left {
+    float: left;
+
+    button {
+        margin-right: 10px;
+        }
+    }
+
+.modalwin__footer__right {
+    float: right;
+
+    button {
+        margin-left: 10px;
+        }
+    }
+
+.modalwin__header {
+    padding-top: 10px;
+    padding-left: 35px;
+    padding-bottom: 10px;
+    margin-top: -10px;
+
+    border-bottom: 1px solid #e9e9e9;
+    background: url('/static/images/icon-modalwin-header.png') no-repeat 0 9px;
+
+    p {
+        font-size: 16px;
+        color: #7f7f7f;
+        }
+    }
+
+.modalwin__shadow {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    z-index: 3000;
+    }
+
+.modalwin__title {
+    margin-bottom: 5px;
+
+    line-height: 25px;
+    font-family: $font-special;
+    font-size: 20px;
+    color: #454545;
+    }

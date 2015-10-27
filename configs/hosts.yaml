@@ -1,0 +1,77 @@
+# Common configuration settings.  These are included later in the file
+# using the "<<: *common" syntax for mapping merges.  Individual values
+# can be overridden by specifying them explicitly.
+common: &common
+  secret_key: '5wm30ztda_&_ca$ryd%#o8duqy2f5)+01*()5!^9353if=5if*'
+  uwsgi_port: 8801
+  mongo_host: 'ec2-54-163-243-173.compute-1.amazonaws.com'
+  mongo_port: 27017
+  mongo_db_name: 'tabac'
+  mongo_username: 'dev_readonly'
+  mongo_password: 'prlgaTu0njqR'
+  solr_url: 'http://ec2-54-163-243-173.compute-1.amazonaws.com:8080/solr/'
+  solr_username: 'website'
+  solr_password: 'CTsu1uZDjkeZ'
+  email_backend: 'django.core.mail.backends.smtp.EmailBackend'
+  email_use_tls: True
+  email_host: 'smtp.webfaction.com'
+  email_port: 587
+  email_host_user: ''
+  email_host_password: ''
+  default_from_email: 'alerts@tobaccowatcher.org'
+  default_to_email: ''
+
+main:  # tobaccowatcher.org
+  <<: *common
+  app_root: '/home/twatcher/webapps/tobaccowatcher/tobacco_watcher/'
+  hostname: 'www.tobaccowatcher.org'
+  log_dir_path: '/home/twatcher/webapps/tobaccowatcher/tobacco_watcher/logs/'
+  media_root: '/home/twatcher/webapps/tobaccowatcher/tobacco_watcher/media/'
+  static_root: '/home/twatcher/webapps/tobaccowatcher_static/'
+  serve_static_files: no
+  db_engine: 'postgresql_psycopg2'
+  db_name: 'tobaccowatcher'
+  db_user: 'tobaccowatcher'
+  db_passwd: 'V9A64nzV1YVi'
+
+stable:  # stable.tobaccowatcher.org
+  <<: *common
+  app_root: '/home/twatcher/webapps/tobaccowatcher_stable/tobacco_watcher/'
+  hostname: 'stable.tobaccowatcher.org'
+  log_dir_path: '/home/twatcher/webapps/tobaccowatcher_stable/tobacco_watcher/logs/'
+  media_root: '/home/twatcher/webapps/tobaccowatcher_stable/tobacco_watcher/media/'
+  static_root: '/home/twatcher/webapps/tobaccowatcher_stable/tobacco_watcher/static/'
+  serve_static_files: yes
+  db_engine: 'postgresql_psycopg2'
+  db_name: 'tobaccowatcher_stable'
+  db_user: 'tobaccowatcher'
+  db_passwd: 'V9A64nzV1YVi'
+  solr_url: 'http://solr.machines.globalhealthwatcher.org:8080/solr/tobacco/'
+
+dev:
+  <<: *common
+  app_root: '/var/www/tobaccowatcher/'
+  hostname: 'tobaccowatcher.frontier.by'
+  log_dir_path: '/var/www/tobaccowatcher/logs/'
+  media_root: '/var/www/tobaccowatcher/media/'
+  static_root: '/var/www/tobaccowatcher/static/'
+  serve_static_files: yes
+  db_engine: 'postgresql_psycopg2'
+  db_name: 'tobaccowatcher'
+  db_user: ''
+  db_passwd: ''
+
+local:
+  <<: *common
+  app_root: '/var/www/tobaccowatcher/'
+  hostname: 'tobaccowatcher.local'
+  log_dir_path: '/var/www/tobaccowatcher/logs/'
+  media_root: '/var/www/tobaccowatcher/media/'
+  static_root: '/var/www/tobaccowatcher/static/'
+  serve_static_files: yes
+  db_engine: 'sqlite3'
+  db_name: 'tobaccowatcher.s3db'
+  db_user: ''
+  db_passwd: ''
+  static_url: '/static/'
+  solr_meta_url: 'http://solr.machines.globalhealthwatcher.org:8080/solr/meta/'

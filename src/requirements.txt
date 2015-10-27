@@ -1,0 +1,33 @@
+Django==1.5.12
+django-extensions==1.2.0
+django-hosts==0.4.2
+#django-imagekit==3.0.3
+django-registration==1.0
+#django-treebeard==2.0b2
+Fabric==1.8.0
+gevent==1.0.1
+greenlet==0.4.2
+monthdelta
+#newrelic==1.10.2.38
+Pillow==2.1.0
+psycopg2==2.4.5
+pymongo==2.6.2
+python-memcached==1.53
+pytz==2012j
+PyYAML==3.10
+#raven==3.1.17
+requests
+South==0.8.2
+#trans==1.4.2
+uWSGI==1.9.15
+wsgiref==0.1.2
+#xlrd==0.9.0
+#xlwt==0.7.4
+psycogreen
+django-ratelimit==0.5
+pylibmc
+model-mommy==1.2.4
+
+-e "git+https://barefootdev@bitbucket.org/mdredze/tobaccowatcher_shared.git#egg=solr&subdirectory=solr"
+-e "git+https://barefootdev@bitbucket.org/mdredze/tobaccowatcher_shared.git#egg=pysolr&subdirectory=pysolr"
+-e "git+https://barefootdev@bitbucket.org/mdredze/tobaccowatcher_shared.git#egg=httplib&subdirectory=httplib"

@@ -1,0 +1,173 @@
+.icon-world {
+    width: 38px;
+    height: 20px;
+    background-position: 0 0;
+}
+
+.icon-close {
+    width: 16px;
+    height: 16px;
+    background-position: -44px -172px;
+}
+
+.icon-close-large {
+    width: 13px;
+    height: 12px;
+    background-position: 0 -107px;
+}
+
+.icon-minus {
+    width: 16px;
+    height: 16px;
+    background-position: -44px -232px;
+}
+
+.icon-plus {
+    width: 16px;
+    height: 16px;
+    background-position: -61px -232px;
+}
+
+.icon {
+    position: absolute;
+    right: 36px;
+    top: -8px;
+    height: 50px;
+    width: 42px;
+
+    &.cat {
+        &:after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: -6px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid rgba(255,255,255,0);
+            border-right: 6px solid rgba(255,255,255,0);
+            @include transform(360deg);
+        }
+    }
+
+    &.cat-a, &.cat-a-white {
+        background-color: $cat-a;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-a, 15%);
+        }
+    }
+
+    &.cat-b, &.cat-b-white {
+        background-color: $cat-b;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-b, 15%);
+        }
+    }
+
+    &.cat-c, &.cat-c-white {
+        background-color: $cat-c;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-c, 15%);
+        }
+    }
+
+    &.cat-d, &.cat-d-white {
+        background-color: $cat-d;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-d, 15%);
+        }
+    }
+
+    &.cat-e, &.cat-e-white {
+        background-color: $cat-e;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-e, 15%);
+        }
+    }
+
+    &.cat-f, &.cat-f-white {
+        background-color: $cat-f;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-f, 15%);
+        }
+    }
+
+    &.cat-g, &.cat-g-white {
+        background-color: $cat-g;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-g, 15%);
+        }
+    }
+
+    &.cat-h, &.cat-h-white {
+        background-color: $cat-h;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-h, 15%);
+        }
+    }
+
+    &.cat-o {
+        background-color: $cat-o;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-o, 15%);
+        }
+    }
+
+    &.cat-none {
+        background-color: $cat-none;
+
+        &:after {
+            border-bottom: 7px solid darken($cat-none, 15%);
+        }
+    }
+}
+
+.icon-prevalence,
+.icon-smoke-free,
+.icon-quitting,
+.icon-warnings,
+.icon-advertising,
+.icon-prices,
+.icon-products,
+.icon-industry {
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    background-position: center;
+    background-repeat: no-repeat;
+    vertical-align: bottom;
+}
+
+.icon-prevalence {
+    background-image: url(../images/icons/icon-prevalence.png);
+}
+.icon-smoke-free {
+    background-image: url(../images/icons/icon-smoke-free.png);
+}
+.icon-quitting {
+    background-image: url(../images/icons/icon-quitting.png);
+}
+.icon-warnings {
+    background-image: url(../images/icons/icon-warnings.png);
+}
+.icon-advertising {
+    background-image: url(../images/icons/icon-advertising.png);
+}
+.icon-prices {
+    background-image: url(../images/icons/icon-prices.png);
+}
+.icon-products {
+    background-image: url(../images/icons/icon-products.png);
+}
+.icon-industry {
+    background-image: url(../images/icons/icon-industry.png);
+}

@@ -1,0 +1,65 @@
+html_design/node_modules
+html_design/dist
+html_design/.tmp
+html_design/.sass-cache
+html_design/app/bower_components
+.codeintel
+venv/
+logs/
+media/
+/static
+settings_local.py
+tobaccowatcher.sublime-project
+tobaccowatcher.sublime-workspace
+configs/nginx.conf
+configs/uwsgi.ini
+
+src/node_modules
+src/dist
+src/.tmp
+src/.sass-cache
+src/app/static/bower_components
+src/test/bower_components
+.sass-cache
+
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Installer logs
+pip-log.txt
+*.log
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+*.s3db
+vagrant
+.vagrant/
+.idea/

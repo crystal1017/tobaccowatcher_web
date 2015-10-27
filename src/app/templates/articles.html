@@ -1,0 +1,312 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load tobaccotags %}
+
+{% block footer_upper_script %}{% endblock footer_upper_script %}
+
+{% block header_content %}
+  <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+
+  <header class="wrap banner" role="banner">
+    {% get_menu %}
+  </header>
+{% endblock header_content %}
+
+{% block main_content %}
+  <div id="dashboard" class="container" role="document">
+    <div class="row">
+      <section class="main" role="main">
+        <div id="search">
+          <form id="search_form" action="">
+            <input id="search_terms" name="search" class="form-control input-lg" placeholder="Search"{% if terms %}value="{{ terms }}"{% endif %}>
+            <button type="submit" class="glyphicon glyphicon-search submit"></button>
+            <span class="btn-lg search-advanced">
+                <i class="glyphicon glyphicon-cog"></i>
+            </span>
+            <span class="btn-lg search-info-tooltip">
+                <i class="glyphicon glyphicon-info-sign"></i>
+            </span>
+          </form>
+            <div class="search-info-dialog" style="display: none;">
+                <p class="title-text">
+                    Search allows you to filter articles based on words or phrases of interest. By default the search box returns articles that match all of the provided words, but can support other boolean operators like OR.
+                </p>
+                <div class="search-info-wrapper pull-left">
+                    <p class="search-info-title">electronic cigarette</p>
+                    <p class="search-info-text">This search will return articles that contain both the word "electronic" and "cigarette."</p>
+                </div>
+                <div class="search-info-wrapper pull-left">
+                    <p class="search-info-title">electronic OR cigarette</p>
+                    <p class="search-info-text">This search will will return articles that contain either electronic or cigarette (or both.)</p>
+                </div>
+                <div class="search-info-wrapper pull-left">
+                    <p class="search-info-title">"electronic cigarette"</p>
+                    <p class="search-info-text">This search will return only articles with the exact phrase "electronic cigarette."</p>
+                </div>
+                <div class="search-info-wrapper pull-left">
+                    <p class="search-info-title">"electronic cigarette" OR ecig</p>
+                    <p class="search-info-text">This search will return articles that contain either the exact phrase “electronic cigarette” or ecig (or both.)</p>
+                </div>
+            </div>
+        </div>
+        <div id="trending">
+          {% for trend in trending %}
+            <article>
+              <div class="icon cat {{ trend.category }}"><i></i></div>
+              <h3>{{ trend.title }}</h3>
+              {% if trend.image %}<img src="{{ trend.image }}" alt="" class="pull-left">{% endif %}
+              <div>{{ trend.datetime }}</div>
+              <div>{{ trend.cleaned_content|safe }}</div>
+              <a href="{{ trend.url }}" class="btn btn-more">Read More</a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <aside class="sidebar" role="complimentary">
+        <form id="filters" action="">
+          <div class="filters-container">
+            <h3 class="filter">Filter By <a href="#" class="clear-all-btn pull-right">Reset</a></h3>
+
+            <div class="search-container widget">
+                <section class="popular">
+                    <div class="accordion ui-accordion ui-widget ui-helper-reset">
+                        <h5 class="checkbox ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">
+                            <input type="checkbox"
+                                   class="popular"
+                                   id="popular"
+                                   name="i"
+                                   value="1"
+                                   {% if is_importance %}checked="checked"{% endif %} />
+                            <label for="popular">
+                                <i class="glyphicon glyphicon-ok"></i>Popular Articles
+                            </label>
+                        </h5>
+                    </div>
+                </section>
+            </div>
+            <div class="search-container widget">
+              <section class="categories">
+                  <h4>Category
+                    <span class="cat-info-tooltip">
+                        <i class="glyphicon glyphicon-info-sign"></i>
+                    </span>
+                  </h4>
+                  <div class="cat-info-dialog" style="display: none;">
+                      <p>
+                          We've trained our computers to do some of the reading for you. Each article's main content is coded and articles are grouped according to the World Health Organization's <a href="http://www.who.int/tobacco/mpower/en/" target="_blank">MPOWER</a> framework plus two additional categories forming MPOWER-ED, with E (emerging "products") and D ("industry").
+                      </p>
+                      {% for category in categories %}
+                          <div class="cat-info-wrapper pull-left">
+                              <div class="category-button{% if category.is_active %} active{% endif %}">
+                                  <div class="cat-mini {{ category.class }}-mini{% if category.is_active %} active{% endif %}"
+                                       title="{{ category.name }}">
+                                      <i>{{ category.short }}</i>
+                                      <input type="checkbox"
+                                             name="c"
+                                             style="display:none;"
+                                             value="{{ category.id }}"
+                                             {% if category.is_active %}checked="checked"{% endif %} />
+                                  </div>
+                                  <span>{{ category.short }}</span>
+                              </div>
+                              <div>
+                                  {{ category.description }}
+                              </div>
+                          </div>
+                      {% endfor %}
+                  </div>
+                <div>
+                  {% for category in categories %}
+                      <div class="category-button{% if category.is_active %} active{% endif %}">
+                        <div class="cat-mini {{ category.class }}-mini{% if category.is_active %} active{% endif %}"
+                                title="{{ category.name }}">
+                          <i>{{ category.short }}</i>
+                          <input type="checkbox"
+                                 name="c"
+                                 style="display:none;"
+                                 value="{{ category.id }}"
+                                 {% if category.is_active %}checked="checked"{% endif %} />
+                        </div>
+                        <span>{{ category.short }}</span>
+                        <span class="only">Only</span>
+                      </div>
+                  {% endfor %}
+                </div>
+              </section>
+            </div>
+
+            <div class="search-container widget">
+              <section class="geography">
+                <h4>Location</h4>
+
+                {% for region in regions %}
+                  {% if region.countries %}
+                    <div class="accordion js-accordion">
+                      <h5 class="region checkbox plus">
+                        <input type="checkbox"
+                               class="region"
+                               name="r"
+                               id="region-{{ region.id }}"
+                               value="{{ region.id }}"
+                               {% if region.is_active %}checked="checked"{% endif %} />
+                        <label for="region-{{ region.id }}">
+                          <i class="glyphicon glyphicon-ok"></i>{{ region.name }}<span class="only">Only</span>
+                        </label>
+                      </h5>
+                      <div class="checkbox">
+                        {% for country in region.countries %}
+                          <div class="country">
+                            <input type="checkbox"
+                                   class="country"
+                                   name="co"
+                                   id="country-{{ country.id }}"
+                                   value="{{ country.id }}"
+                                   {% if country.is_active %}checked="checked"{% endif %} />
+                            <label for="country-{{ country.id }}">
+                              <i class="glyphicon glyphicon-ok"></i>{{ country.name }}<span class="only">Only</span>
+                            </label>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="accordion ui-accordion ui-widget ui-helper-reset">
+                      <h5 class="region checkbox ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons">
+                        <input type="checkbox"
+                               class="region"
+                               name="r"
+                               id="region-{{ region.id }}"
+                               value="{{ region.id }}"
+                               {% if region.is_active %}checked="checked"{% endif %} />
+                        <label for="region-{{ region.id }}">
+                          <i class="glyphicon glyphicon-ok"></i>{{ region.name }}<span class="only">Only</span>
+                        </label>
+                          {% if forloop.last %}
+                            <span class="global-loc-tooltip">
+                                <i class="glyphicon glyphicon-info-sign"></i>
+                            </span>
+                          {% endif %}
+                      </h5>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </section>
+            </div>
+
+            <div class="search-container widget">
+              <section class="language">
+                <h4>Language</h4>
+
+                {% for language in languages %}
+                  <div class="accordion ui-accordion ui-widget ui-helper-reset">
+                    <h5 class="checkbox ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">
+                      <input type="checkbox"
+                             class="language"
+                             name="la"
+                             id="language-{{ language.id }}"
+                             value="{{ language.id }}"
+                             {% if language.is_active %}checked="checked"{% endif %} />
+                      <label for="language-{{ language.id }}">
+                        <i class="glyphicon glyphicon-ok"></i>{{ language.name }}<span class="only">Only</span>
+                      </label>
+                    </h5>
+                  </div>
+                {% endfor %}
+              </section>
+            </div>
+
+            <div class="search-container widget">
+              <section class="timeframe">
+                <h4>Timeframe</h4>
+                <div class="slider">
+                  <label for="from_datepicker">From:</label>
+                  <br />
+                  <input type="text"
+                         id="from_date"
+                         name="st"
+                         value="{{ start }}" />
+                  <br />
+                  <br />
+                  <label for="to_datepicker">To:</label>
+                  <br />
+                  <input type="text"
+                         id="to_date"
+                         name="e"
+                         value="{{ end }}" />
+                </div>
+              </section>
+            </div>
+          </div>
+        </form>
+      </aside>
+    </div> <!-- .row -->
+  </div> <!-- .container -->
+
+<div class="search-advanced__dialog">
+  <form action="">
+    <div class="search-advanced__header">
+      <span class="search-advanced__close close">&times;</span>
+      <h3>Advanced Search</h3>
+    </div>
+    <div class="search-advanced__body">
+      <span>To do this in the search box:</span>
+      <p>Find articles with...</p>
+      <div class="search-advanced__row">
+        <div class="search-advanced__field"><label>all these words:</label><input type="text" name="keywords"></div>
+        <div class="search-advanced__description"><strong>Type your keywords:</strong><span>Nicotine Addiction</span></div>
+      </div>
+      <div class="search-advanced__row">
+        <div class="search-advanced__field"><label>this exact word or phrase:</label><input type="text" name="phrase"></div>
+        <div class="search-advanced__description"><strong>Put exact words in quotes:</strong><span>"Nicotine Addiction"</span></div>
+      </div>
+      <div class="search-advanced__row">
+        <div class="search-advanced__field"><label>any of these words:</label><input type="text" name="any_words"></div>
+        <div class="search-advanced__description"><strong>Type OR between words:</strong><span>Nicotine OR Addiction</span></div>
+      </div>
+      <div class="search-advanced__row">
+        <div class="search-advanced__field"><label>none of these words:</label><input type="text" name="none_words"></div>
+        <div class="search-advanced__description"><strong>Put a minus sign before the word:</strong><span>-Addiction, -Nicotine</span></div>
+      </div>
+      <div class="search-advanced__row">
+        <div class="search-advanced__field"><label>words that begin with:</label><input type="text" name="with_begin"></div>
+        <div class="search-advanced__description"><strong>Put an asterisk * in the word:</strong><span>cig* = cigs, cigarette, cigars, etc.</span></div>
+      </div>
+      <p>Narrow results by...</p>
+      <div class="search-advanced__row search-advanced__selectable">
+        <span>language:</span>
+          <label class="radio-inline">
+            <input type="radio" value="en" name="language">
+              English
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="src_lang" name="language">Source Language
+          </label>
+      </div>
+      <div class="search-advanced__row search-advanced__selectable">
+          <span>section:</span>
+          <label class="radio-inline">
+              <input type="radio" value="article" name="section">
+              Entire Article
+          </label>
+          <label class="radio-inline">
+              <input type="radio" value="title" name="section">
+              Title Only
+          </label>
+          <label class="radio-inline">
+              <input type="radio" value="beginning" name="section">
+              First Part of Article
+          </label>
+      </div>
+    </div>
+    <div class="search-advanced__footer">
+      <button class="btn btn-default" type="reset">Cancel</button>
+      <button class="btn btn-primary" type="submit">Advanced Search</button>
+    </div>
+  </form>
+</div>
+
+<!-- <div id="u1076" class="ax_dynamic_panel search-advanced-dialog" data-label="info-modal">
+
+<!-- <div id="u1076_lightbox" style="position: fixed; left: 0px; top: 0px; width: 10000px; height: 10000px; opacity: 0.607843137254902; z-index: 1001; background-color: rgb(47, 79, 79);"></div> -->
+{% endblock main_content %}

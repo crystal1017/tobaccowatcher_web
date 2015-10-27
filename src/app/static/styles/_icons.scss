@@ -1,0 +1,305 @@
+.ico {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+
+.ico-link {
+  width: 20px;
+  height: 20px;
+  margin: 0 15px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  &:hover path {
+    fill: $brand-blue;
+  }
+
+}
+.ico-link path {
+  fill: #DADADA;
+}
+.ico-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ico-about svg, .ico-help svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ico-about path, .ico-help path {
+  fill: #DADADA;
+}
+
+.ico-help:hover ellipse {
+  fill: $brand-blue;
+}
+
+.ico-profile svg {
+  width: 25px;
+  height: 25px;
+}
+
+.ico-search svg {
+  width: 25px;
+  height: 25px;
+}
+
+.ico-profile path, .ico-search path {
+  fill: #808080;
+
+}
+
+.ico-play, .ico-pause {
+  display: block;
+  margin: 10px 10px;
+  z-index: 4;
+  position: relative;
+}
+
+.ico-play svg, .ico-pause svg {
+  width: 19px;
+  height: 19px;
+}
+
+.ico-pause {
+  svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+.ico-alert {
+  width: 20px;
+  height: 20px;
+  background: #DADADA;
+  display: block;
+  margin: 15px auto 8px;
+}
+.add-alert-bg {
+  width: 45px;
+  height: 45px;
+  background: #808080;
+  display: block;
+  border-radius: 60px;
+  margin: 50px auto;
+  padding: 12px 13px;
+  .ico-add-alert {
+    
+  }
+  .ico-add-alert svg {
+    width: 20px;
+    height: 20px;
+  }
+  .ico-add-alert path {
+    fill: #fff;
+  }
+}
+
+.ico-alert-mine svg, .ico-alert-shared svg, .ico-alert-reccomended svg {
+  width: 30px;
+  height: 30px;
+  margin: 0 15px -7px 0;
+}
+.ico-alert-mine path, .ico-alert-shared path, .ico-alert-reccomended path { 
+  fill: $brand-red;
+}
+
+.ico-alert-mine-add-alert {
+  display: block;
+  margin: 0 auto;
+  svg {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+}
+
+.ico-alert-mine-add-alert path {
+  fill: #808080;
+}
+
+.icon-world {
+  width: 38px;
+  height: 20px;
+  background-position: 0 0;
+}
+
+.icon-close {
+  width: 16px;
+  height: 16px;
+  background-position: -44px -172px;
+}
+
+.icon-close-large {
+  width: 13px;
+  height: 12px;
+  background-position: 0 -107px;
+}
+
+.icon-minus {
+  width: 16px;
+  height: 16px;
+  background-position: -44px -232px;
+}
+
+.icon-plus {
+  width: 16px;
+  height: 16px;
+  background-position: -61px -232px;
+}
+
+.icon {
+  position: absolute;
+  right: 36px;
+  top: -8px;
+  height: 50px;
+  width: 42px;
+
+  &.cat {
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: -6px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid rgba(255, 255, 255, 0);
+      border-right: 6px solid rgba(255, 255, 255, 0);
+      @include transform(360deg);
+    }
+  }
+
+  &.cat-a, &.cat-a-white {
+    background-color: $cat-a;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-a, 15%);
+    }
+  }
+
+  &.cat-b, &.cat-b-white {
+    background-color: $cat-b;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-b, 15%);
+    }
+  }
+
+  &.cat-c, &.cat-c-white {
+    background-color: $cat-c;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-c, 15%);
+    }
+  }
+
+  &.cat-d, &.cat-d-white {
+    background-color: $cat-d;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-d, 15%);
+    }
+  }
+
+  &.cat-e, &.cat-e-white {
+    background-color: $cat-e;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-e, 15%);
+    }
+  }
+
+  &.cat-f, &.cat-f-white {
+    background-color: $cat-f;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-f, 15%);
+    }
+  }
+
+  &.cat-g, &.cat-g-white {
+    background-color: $cat-g;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-g, 15%);
+    }
+  }
+
+  &.cat-h, &.cat-h-white {
+    background-color: $cat-h;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-h, 15%);
+    }
+  }
+
+  &.cat-o {
+    background-color: $cat-o;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-o, 15%);
+    }
+  }
+
+  &.cat-none {
+    background-color: $cat-none;
+
+    &:after {
+      border-bottom: 7px solid darken($cat-none, 15%);
+    }
+  }
+}
+
+.icon-prevalence,
+.icon-smoke-free,
+.icon-quitting,
+.icon-warnings,
+.icon-advertising,
+.icon-prices,
+.icon-products,
+.icon-industry {
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  background-position: center;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+}
+
+.icon-prevalence {
+  background-image: url(/static/images/icons/icon-prevalence.png);
+}
+
+.icon-smoke-free {
+  background-image: url(/static/images/icons/icon-smoke-free.png);
+}
+
+.icon-quitting {
+  background-image: url(/static/images/icons/icon-quitting.png);
+}
+
+.icon-warnings {
+  background-image: url(/static/images/icons/icon-warnings.png);
+}
+
+.icon-advertising {
+  background-image: url(/static/images/icons/icon-advertising.png);
+}
+
+.icon-prices {
+  background-image: url(/static/images/icons/icon-prices.png);
+}
+
+.icon-products {
+  background-image: url(/static/images/icons/icon-products.png);
+}
+
+.icon-industry {
+  background-image: url(/static/images/icons/icon-industry.png);
+}
+

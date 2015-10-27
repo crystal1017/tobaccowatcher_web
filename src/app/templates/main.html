@@ -1,0 +1,155 @@
+{% extends "static_page.html" %}
+{% load i18n %}
+{% load tobaccotags %}
+{% block body_classes %}class="home"{% endblock body_classes %}
+
+{% block header_content %}
+<header class="wrap banner" role="banner">
+    {% get_menu %}
+</header>
+{% endblock header_content %}
+
+{% block main_content %}
+<div class="container content" style="padding-bottom: 129px;">
+
+    <div class="row">
+        <div class="col-md-6 tw-intro">
+            <h1>Tobacco Watcher</h1>
+            <h3>
+                Intelligence for Tobacco Control <br/>
+                <span>by delivering and analyzing the world's tobacco-related media</span>
+            </h3>
+        </div>
+        <div class="col-md-3 tw-bg-a">
+            <div id="carousel-articles" class="carousel slide" data-ride="carousel" data-interval="6000">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active"><h2><span class="count">{{ data_stats.processed_articles }}</span> News articles processed</h2></div>
+                    <div class="item"><h2><span class="count">{{ total_count }}</span> Tobacco-related articles</h2></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 tw-bg-b">
+            <h2><span class="count">{{ data_stats.unique_sources }}</span> Unique sources</h2>
+        </div>
+        <div class="col-md-2 tw-bg-c">
+            <h2>
+                <span>23</span>
+                <div id="carousel-languages" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">languages</div>
+                        <div class="item">idiomas</div>
+                        <div class="item">اللغات</div>
+                        <div class="item">语言</div>
+                        <div class="item">языки</div>
+                        <div class="item">languages</div>
+                        <div class="item">línguas</div>
+                        <div class="item">ngôn ngữ</div>
+                        <div class="item">ภาษา</div>
+                        <div class="item">bahasa</div>
+                        <div class="item">languages</div>
+                        <div class="item">langues</div>
+                        <div class="item">mga wika</div>
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div class="col-md-4 tw-bg-d">
+            <h2><span>82</span> Countries</h2>
+        </div>
+    </div>
+
+    <div class="row alerts">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 image">
+                    <img src="/static/images/temp-b.jpg" alt=""/>
+                </div>
+                <div class="col-md-6 tw-alert alt has-hover">
+                    <a href="{% url 'alerts_list' %}">
+                        <div class="content">
+                            <div class="inner">
+                                <h3>Create Alerts</h3>
+                                <p>Create customized email updates to keep tabs on the latest in tobacco control.</p>
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </div>
+                        </div>
+                        <div class="hover">
+                            <div class="inner">
+                                <h2>Create Alerts <i class="glyphicon glyphicon-menu-right"></i></h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 tw-alert">
+                    <h3><a href="{% url 'article_detail' uuid=articles.0.uuid %}">{{ articles.0.title|truncatechars:75 }}</a></h3>
+                    <p>
+                        <i class="icon-{{ articles.0.category_text|lower }}"></i>
+                        <a href="{% url 'articles' %}?c={{ articles.0.category_text|lower }}">{{ articles.0.category_text }}</a> / {{ articles.0.datetime }} <br/>
+                        <a href="{% url 'articles' %}?i=1" class="more">Read Popular Articles</a>
+                    </p>
+                </div>
+                <div class="col-md-6 tw-alert">
+                    <h3><a href="{% url 'article_detail' uuid=articles.1.uuid %}">{{ articles.1.title|truncatechars:75 }}</a></h3>
+                    <p>
+                        <i class="icon-{{ articles.1.category_text|lower }}"></i>
+                        <a href="{% url 'articles' %}?c={{ articles.1.category_text|lower }}">{{ articles.1.category_text }}</a> / {{ articles.1.datetime }} <br/>
+                        <a href="{% url 'articles' %}?i=1" class="more">Read Popular Articles</a>
+                    </p>
+                </div>
+                <div class="col-md-6 tw-alert alt has-hover">
+                    <a href="{% url 'trends' %}">
+                        <div class="content">
+                            <div class="inner">
+                                <h3>Perform Analyses</h3>
+                                <p>Analyze trends in tobacco-related media.</p>
+                                <i class="glyphicon glyphicon-menu-down"></i>
+                            </div>
+                        </div>
+                        <div class="hover">
+                            <div class="inner">
+                                <h2>Perform Analyses <i class="glyphicon glyphicon-menu-right"></i></h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6 tw-alert alt large">
+                    <h2>View Articles</h2>
+                    <p>Explore our database of news articles by category.</p>
+                    <hr/>
+                    <h4 class="text-uppercase">Choose a Category</h4>
+                    <div class="article-categories">
+                        <a href="{% url 'articles' %}?c=prevalence" class="cat cat-a"><span>Prevalence</span><i></i></a>
+                        <a href="{% url 'articles' %}?c=smoke-free" class="cat cat-b"><span>Smoke-Free</span><i></i></a>
+                        <a href="{% url 'articles' %}?c=quitting" class="cat cat-c"><span>Quitting</span><i></i></a>
+                        <a href="{% url 'articles' %}?c=warnings" class="cat cat-d"><span>Warnings</span><i></i></a>
+                        <a href="{% url 'articles' %}?c=advertising" class="cat cat-e"><span>Advertising</span><i></i></a>
+                        <a href="{% url 'articles' %}?c=prices" class="cat cat-f"><span>Prices</span><i></i></a>
+                        <a href="{% url 'articles' %}?c=products" class="cat cat-g"><span>Products</span><i></i></a>
+                        <a href="{% url 'articles' %}?c=industry" class="cat cat-h"><span>Industry</span><i></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 image">
+                    <a href="http://globaltobaccocontrol.org/" target="_blank">
+                        <img src="/static/images/john-hopkins.jpg" alt="John Hopkins Institute"/>
+                    </a>
+                </div>
+                <div class="col-md-6 image">
+                    <img src="/static/images/temp-c.jpg" alt=""/>
+                </div>
+                <div class="col-md-6 tw-alert">
+                    <h3><a href="{% url 'article_detail' uuid=articles.2.uuid %}">{{ articles.2.title|truncatechars:75 }}</a></h3>
+                    <p>
+                        <i class="icon-{{ articles.2.category_text|lower }}"></i>
+                        <a href="{% url 'articles' %}?c={{ articles.2.category_text|lower }}">{{ articles.2.category_text }}</a> / {{ articles.2.datetime }} <br/>
+                        <a href="{% url 'articles' %}?i=1" class="more">Read Popular Articles</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}

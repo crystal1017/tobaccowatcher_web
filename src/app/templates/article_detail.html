@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load tobaccotags %}
+
+{% block header_content %}
+<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+
+<header class="wrap banner" role="banner">
+    {% get_menu %}
+</header>
+{% endblock header_content %}
+
+{% block main_content %}
+
+<div id="article-detail" class="container" role="document" data-info="{{article_json}}">
+    <div class="col-lg-9 article__detail_line">
+        <a href="/articles/" class="article__detail_back">&lt Back</a>
+        <span class="article__detail_line_text">Article Detail</span>
+    </div>
+    <article class="article_full_wrap col-lg-9">
+        <div class="icon cat {{ article.category }}"><i></i></div>
+        <div class="feedback-category">
+            <span>{{ article.category_text|safe }}</span>
+        </div>
+        <h3 class="article__title">
+            {{ article.title|safe }} <span class="article__ago">{{ article.datetime|safe }}</span>
+        </h3>
+
+        <div class="article__content">
+            {{ article.cleaned_content|safe }}
+        </div>
+        <div class="article__url article__content">
+            <a target="_blank" href="/ext?uuid={{ article.uuid }}&url={{ article.url }}/">{{ article.url|safe }}</a>
+        </div>
+        <div>
+            <ul class="list-inline">
+                <li class="article__info detail">
+                    Location:
+                    {% for country in article.countries %}
+                    {% if country != '' %}
+                    <span>{{ country|safe }}</span>,
+                    {% endif %}
+                    {% endfor %}
+                    {% for region in article.regions %}
+                    <span>{{ region|safe }}</span>
+                    {% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </li>
+                <li class="article__info detail">
+                    Language: <span>{{ article.language|safe }}</span>
+                </li>
+            </ul>
+
+            <table class="article__full_actions">
+                <tbody>
+                <tr>
+                    <td class="article__full_action js-share-btn">
+                        <i class="glyphicon glyphicon-share"></i> Share
+                <span class="article__help-tooltip share-btn-tooltip">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </span>
+                        <!--
+                      <div class="share-popup">
+                        <div id="share-<%= articles[i].uuid %>"></div>
+
+                        <script>
+                          new Ya.share({
+                              l10n: 'en',
+                              theme: 'counter',
+                              element: 'share-<%= articles[i].uuid %>',
+                              elementStyle: {
+                                  'type': 'none',
+                                  'quickServices': ['facebook', 'twitter']
+                              },
+                              title: 'Read on TobaccoWatcher.org: <%- articles[i].title %>',
+                              description: 'Read on TobaccoWatcher.org: <%- articles[i].short_cleaned_content %>',
+                              link: '<%= encodeURI(articles[i].url) %>',
+                              serviceSpecific: {
+                                  twitter: {
+                                      title: 'Read on TobaccoWatcher.org: <%- articles[i].title %>'
+                                  }
+                              }
+                          });
+                        </script>
+                      </div>
+                      -->
+                    </td>
+                    <td class="article__full_action js-feedback-btn">
+                        <i class="glyphicon glyphicon-flag"></i> Feedback
+                    </td>
+                </tr>
+                <tbody>
+            </table>
+        </div>
+    </article>
+
+    <div class="article_tabs_btns">
+        <span data-article-type="related_articles" class="active">Related Coverage</span>
+        <span data-article-type="additional_articles" class="">Additional Coverage</span>
+    </div>
+    <div class="articles_tabs_wrap col-lg-9">
+        <div class="articles_tabs related_articles" data-type="1"></div>
+        <div class="articles_tabs additional_articles" data-type="0" style="display: none;"></div>
+    </div>
+</div>
+
+{% endblock main_content %}

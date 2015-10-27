@@ -1,0 +1,121 @@
+<% for (var i=0; i<articles.length; i++) { %>
+  <article class="article article--short">
+    <div title="<% if (articles[i].category !== '') { %> <%= articles[i].category_text %> <% } else { %>No category<% } %>"
+         class="icon cat<% if (articles[i].category !== '') { %> <%= articles[i].category %> <% } else { %> cat-none<% } %>"><i></i></div>
+    <div class="feedback-category">
+      <span class="js-article-filter-btn" data-filter-item="category" data-id="<%= articles[i].category %>"><%= articles[i].category_text %></span>
+    </div>
+    <h3 class="article__title i--short">
+      <%= articles[i].short_title %> <span class="article__ago"><%= articles[i].datetime %></span>
+    </h3>
+    <div class=" article__content i--short">
+      <%= articles[i].short_cleaned_content %>
+    </div>
+    <div class="article__location i--short">
+      <ul class="list-inline">
+          <li class="article__info">
+              <% var lastRKey = Object.keys(articles[i].regions)[Object.keys(articles[i].regions).length - 1]; %>
+              Location:
+              <% for(var cKey in articles[i].countries) { %>
+                <% if (articles[i].countries[cKey] != '') {%>
+                  <span class="action js-article-filter-btn" data-filter-item="country" data-id="<%= articles[i].countries[cKey] %>"><%= cKey %></span>,
+                <% } %>
+              <% } %>
+              <% for(var rKey in articles[i].regions) { %>
+                  <span class="action js-article-filter-btn" data-filter-item="region" data-id="<%= articles[i].regions[rKey] %>"><%= rKey %></span>
+                  <% if (articles[i].regions[lastRKey] != articles[i].regions[rKey]) { %>,<% } %>
+              <% } %>
+          </li>
+          <li class="article__info">
+              Language: <span class="action js-article-filter-btn" data-filter-item="language" data-id="<%= articles[i].language_id %>"><%= articles[i].language %></span>
+          </li>
+      </ul>
+    </div>
+    <h3 class="article__title i--full">
+      <%= articles[i].title %> <span class="article__ago"><%= articles[i].datetime %></span>
+    </h3>
+    <div class="article__content i--full">
+      <%= articles[i].cleaned_content %>
+    </div>
+    <div class="i--full">
+      <ul class="list-inline">
+          <li class="article__info">
+              Location:
+              <% for(var cKey in articles[i].countries) { %>
+                  <% if (articles[i].countries[cKey] != '') {%>
+                    <span class="action js-article-filter-btn" data-filter-item="country" data-id="<%= articles[i].countries[cKey] %>"><%= cKey %></span>,
+                  <% } %>
+              <% } %>
+              <% for(var rKey in articles[i].regions) { %>
+              <span class="action js-article-filter-btn" data-filter-item="region" data-id="<%= articles[i].regions[rKey] %>"><%= rKey %></span>
+              <% if (articles[i].regions[lastRKey] != articles[i].regions[rKey]) { %>,<% } %>
+              <% } %>
+          </li>
+          <li class="article__info">
+              Language: <span class="action js-article-filter-btn" data-filter-item="language" data-id="<%= articles[i].language_id %>"><%= articles[i].language %></span>
+          </li>
+      </ul>
+
+      <table class="article__actions">
+        <tbody>
+          <tr>
+            <td class="article__action">
+                <a target="_blank" href="/articles/<%= articles[i].uuid %>/">
+                    <i class="glyphicon glyphicon-export"></i> View More
+                </a>
+            </td>
+
+            <td class="article__action js-share-btn">
+              <i class="glyphicon glyphicon-share"></i> Share
+                <span class="help-tooltip share-btn-tooltip">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </span>
+                <!--
+              <div class="share-popup">
+                <div id="share-<%= articles[i].uuid %>"></div>
+
+                <script>
+                  new Ya.share({
+                      l10n: 'en',
+                      theme: 'counter',
+                      element: 'share-<%= articles[i].uuid %>',
+                      elementStyle: {
+                          'type': 'none',
+                          'quickServices': ['facebook', 'twitter']
+                      },
+                      title: 'Read on TobaccoWatcher.org: <%- articles[i].title %>',
+                      description: 'Read on TobaccoWatcher.org: <%- articles[i].short_cleaned_content %>',
+                      link: '<%= encodeURI(articles[i].url) %>',
+                      serviceSpecific: {
+                          twitter: {
+                              title: 'Read on TobaccoWatcher.org: <%- articles[i].title %>'
+                          }
+                      }
+                  });
+                </script>
+              </div>
+              -->
+            </td>
+            <td class="article__action js-feedback-btn" data-uuid="<%= articles[i].uuid %>">
+              <i class="glyphicon glyphicon-flag"></i> Feedback
+            </td>
+          </tr>
+        <tbody>
+      </table>
+    </div>
+  </article>
+<% } %>
+
+<% if (articles.length > 1) { %>
+  <div class="more-articles" style="display:none;"></div>
+<% } else { %>
+  <div class="no-more-articles" style="display:none;"></div>
+<% } %>
+
+<% if (articles.length === 0 && num_results == 0) { %>
+    <br><p class="article__error">No articles available.</p>
+<% } else if (articles.length === 0 && num_results > 0) { %>
+    <br><p class="article__error">No more articles available.</p>
+<% } %>
+
+

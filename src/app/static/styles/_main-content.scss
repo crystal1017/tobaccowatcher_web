@@ -1,0 +1,48 @@
+/*******************************************************
+ ** Main Content
+********************************************************/
+
+.main {
+  float: right;
+  width: 72.5%;
+  padding-bottom: 60px;
+
+  div.num_results {
+    padding: 10px;
+  }
+
+  #search {
+    input {
+      background: $gray-darker;
+      border: 1px solid #1f1f1f;
+    }
+  }
+
+  .news {
+    background-color: #454545;
+    @include border-radius(4px);
+    padding: 0 $side-padding;
+    margin: 0 0 $margin-bottom;
+
+    h2 {
+      background-color: #f7f7f7;
+      margin-top: 0;
+      padding: 10px $side-padding;
+      margin-left: -($side-padding);
+      margin-right: -($side-padding);
+      font-family: $specialFont;
+      letter-spacing: 1px;
+      font-size: 16px;
+      line-height: 16px;
+      text-transform: uppercase;
+      color: $brand-danger;
+      @include border-top-radius(4px);
+    }
+
+    article {
+      border: none;
+      padding: 20px 0 10px;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+/*******************************************************
+ ** Static page
+********************************************************/
+
+.static-page-body {
+    background-color: white;
+
+    header {
+        margin-bottom: 0 !important;
+    }
+}
+
+.static-page {
+    background-color: white;
+    padding-bottom: 178px;
+
+    > .container > .row {
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        margin-bottom: 40px;
+    }
+
+    h1 {
+        font-size: 18px;
+        color: #892e2f;
+        font-family: $specialFont !important;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 14px;
+        color: #515151;
+        font-weight: 300;
+    }
+
+    form {
+        .row {
+            margin-bottom: 0px;
+        }
+
+        .form-control {
+            @include form-control-focus(gray);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: gray;
+
+            span {
+                font-size: 12px;
+            }
+        }
+
+        button[type=submit] {
+            margin-top: 10px;
+            padding: 3px 40px;
+            font-size: 15px;
+            letter-spacing: 1px;
+            color: #fff;
+            background-color: #921927;
+            border-color: #7c1521;
+        }
+    }
+}

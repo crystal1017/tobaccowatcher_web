@@ -1,0 +1,93 @@
+# Common configuration settings.  These are included later in the file
+# using the "<<: *common" syntax for mapping merges.  Individual values
+# can be overridden by specifying them explicitly.
+common: &common
+  secret_key: ''
+  uwsgi_port: 8801
+  static_url: '/static/'
+
+  mongo_host: ''
+  mongo_port: 27017
+  mongo_db_name: ''
+  mongo_username: ''
+  mongo_password: ''
+
+  solr_url: ''
+  solr_meta_url: ''
+  solr_username: ''
+  solr_password: ''
+
+  log_dir_path: ''
+  log_format: '%(asctime)s %(message)s' # this is the default Django format
+
+  # SMTP
+  #email_backend: 'django.core.mail.backends.smtp.EmailBackend'
+  # Console, for debugging
+  #email_backend: 'django.core.mail.backends.console.EmailBackend'
+  # File backend, emails to a local file
+  #email_backend: 'django.core.mail.backends.filebased.EmailBackend'
+  # File backend, requires the below in your settings as well
+  #EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
+  # Dummy
+  #email_backend: 'django.core.mail.backends.dummy.EmailBackend'
+  email_use_tls: True
+  email_host: ''
+  email_port: 587
+  email_host_user: ''
+  email_host_password: ''
+  default_from_email: ''
+  default_to_email: ''
+
+main:  # tobaccowatcher.org
+  <<: *common
+  app_root: ''
+  hostname: ''
+  log_dir_path: ''
+  media_root: ''
+  static_root: ''
+  serve_static_files: no
+  db_engine: ''
+  db_name: ''
+  db_user: ''
+  db_passwd: ''
+
+stable:  # stable.tobaccowatcher.org
+  <<: *common
+  app_root: ''
+  hostname: ''
+  log_dir_path: ''
+  media_root: ''
+  static_root: ''
+  serve_static_files: yes
+  db_engine: 'postgresql_psycopg2'
+  db_name: ''
+  db_user: ''
+  db_passwd: ''
+  solr_url: ''
+
+dev:
+  <<: *common
+  app_root: ''
+  hostname: ''
+  log_dir_path: ''
+  media_root: ''
+  static_root: ''
+  serve_static_files: yes
+  db_engine: ''
+  db_name: ''
+  db_user: ''
+  db_passwd: ''
+
+local:
+  <<: *common
+  app_root: ''
+  hostname: ''
+  log_dir_path: ''
+  log_filename: ''
+  media_root: ''
+  static_root: ''
+  serve_static_files: yes
+  db_engine: ''
+  db_name: ''
+  db_user: ''
+  db_passwd: ''

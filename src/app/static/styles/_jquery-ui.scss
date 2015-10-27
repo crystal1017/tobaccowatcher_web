@@ -1,0 +1,365 @@
+/*******************************************************
+ ** jQuery UI Styles
+********************************************************/
+
+.ui-widget-overlay {
+  background: #aaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50%;
+  z-index: 2000000001;
+}
+
+.ui-dialog {
+    z-index: 2000000002;
+    }
+
+.ui-slider {
+  height: 3px;
+  background: #1f1f1f;
+  border: none;
+  @include border-radius(0);
+
+  .ui-slider-range {
+    background: #c3b800;
+  }
+
+  .ui-slider-handle {
+    width: 8px;
+    height: 20px;
+    background: #929292;
+    border: none;
+    @include border-radius(0);
+  }
+
+  &.ui-slider-horizontal .ui-slider-handle {
+    top: -0.5em;
+    margin-left: -0.4em;
+  }
+}
+
+.accordion {
+  .only {
+    font-size: 12px;
+    color: #6f6f6f;
+    cursor: pointer;
+    float: right;
+    display: none;
+    margin-top: 2px;
+    margin-right: 20px;
+
+    &:hover {
+      color: #7c7c7c;
+      text-decoration: underline;
+    }
+  }
+
+  .ui-accordion-header, .ui-accordion-content {
+    padding-left: 12px;
+  }
+
+  .ui-accordion-header {
+    color: #d1d1d1;
+    font-size: 14px;
+    background: #454545;
+    border: none;
+    @include border-radius(0);
+    margin-top: 6px;
+    margin-bottom: 0px;
+
+    &.plus {
+      > label .only {
+        margin-right: 20px;
+      }
+    }
+
+    &:hover {
+      > label .only {
+        display: inline;
+      }
+    }
+
+    .ui-accordion-header-icon {
+      @extend .sprite;
+      background-color: #3a3a3a;
+      width: 16px;
+      height: 16px;
+      left: auto;
+      right: 6px;
+
+      &.ui-icon-triangle-1-s {
+        // Open
+        @extend .icon-minus;
+      }
+
+      &.ui-icon-triangle-1-e {
+        // Closed
+        @extend .icon-plus;
+      }
+    }
+  }
+
+  .ui-accordion-content {
+    background: transparent;
+    border: 1px solid #454545;
+    @include border-radius(0);
+    margin-top: 0px;
+    margin-bottom: 3px;
+    border-top-width: 0px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 12px;
+
+    div:hover {
+      > label .only {
+        display: inline;
+      }
+    }
+  }
+  label {
+    padding-left: 0;
+    display: block;
+  }
+}
+
+.ui-dialog.dialog-over-map {
+  padding: 0;
+  border: none;
+  background-color: white;
+  @include border-radius(4px);
+
+  // Arrow on right side, dialog opens on left
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+  }
+
+  &.switch-right:before {
+    border-left: 25px solid white;
+    right: -25px;
+  }
+
+  // Arrow should appear on left
+  &.switch-left:before {
+    border-right: 25px solid white;
+    left: -25px;
+  }
+
+  // Shadow underneath
+  &:after {
+    @extend .shadow-after;
+  }
+
+  .ui-dialog-titlebar {
+    background: #074e6d;
+    border: none;
+    padding: 6px 15px;
+    font-size: 20px;
+    line-height: 1.5;
+    @include border-radius(4px 4px 0 0);
+
+    .ui-dialog-title {
+      color: white;
+      font-family: $specialFont;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .ui-dialog-titlebar-close {
+      border: none;
+      background-color: transparent;
+      right: 15px;
+      margin-top: -6px;
+      @extend .sprite;
+      @extend .icon-close-large;
+
+      .ui-button-icon-primary {
+        display: none;
+      }
+
+      &:active, &:focus {
+        outline: none;
+        border: none;
+      }
+    }
+  }
+}
+
+.ui-dialog.dialog-feedback {
+  padding: 0px;
+  border: 0px;
+  font-family: $regularFont;
+
+  .ui-dialog-titlebar {
+    display: none;
+  }
+}
+
+.help-tooltip {
+  margin-left: 30px;
+}
+
+.cat-info-tooltip {
+  margin-left: 5px;
+}
+
+.global-loc-tooltip {
+  position: absolute;
+  top: 8px;
+  left: 0px;
+}
+
+.cat-info-tooltip:hover {
+  cursor: pointer;
+}
+
+.category-info-dialog .cat-info-wrapper {
+  width: 50%;
+  margin-bottom: 10px;
+  padding-right: 20px;
+  height: 120px;
+}
+
+.category-info-dialog p a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.category-info-dialog p a:focus {
+  outline: none;
+}
+
+.category-info-dialog p a:hover {
+  text-decoration: underline;
+}
+
+.ui-dialog.category-info-dialog {
+  padding: 20px 0 20px 20px;
+}
+
+.ui-dialog.category-info-dialog .ui-dialog-content {
+  padding: 0 !important;
+}
+
+.category-info-dialog p {
+  padding: 0 20px 10px 0 !important;
+}
+
+.ui-dialog.category-info-dialog .ui-dialog-titlebar {
+  padding: 0 !important;
+  margin-bottom: 10px;
+}
+
+.ui-dialog.dialog-registration {
+  border: 1px solid #b5b5b5;
+}
+
+.search-info-tooltip {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  color: #d1d1d1;
+  padding: 0 !important;
+}
+
+.search-info-tooltip:hover {
+  cursor: pointer;
+}
+
+.search-advanced {
+    padding: 0 !important;
+    right: 38px;
+    top: 12px;
+    position: absolute;
+    }
+
+.category-info-dialog .cat-info-wrapper .category-button {
+  width: 234px;
+}
+
+.reg-success-dialog {
+  padding-top: 25px !important;
+}
+
+.category-info-dialog .ui-widget-header, .srch-info-dialog .ui-widget-header {
+  border: 0 !important;
+  background: #fff;
+}
+
+.srch-info-dialog .ui-dialog-title {
+  font-family: 'HelveticaNeue', 'Helvetica Neue';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+}
+
+.srch-info-dialog .search-info-text {
+  color: #999999;
+  font-size: 13px;
+}
+
+.srch-info-dialog .title-text {
+  color: #666666;
+  font-family: 'ArialMT', 'Arial';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+}
+
+.srch-info-dialog .search-info-wrapper {
+  width: 50%;
+  margin-bottom: 20px;
+  padding-right: 10px;
+  font-family: 'HelveticaNeue', 'Helvetica Neue';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  color: #666666;
+}
+
+.ui-tooltip-content:after, .ui-tooltip-content:before {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ui-tooltip-content:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-right-color: #fff!important;
+  border-width: 4px;
+  margin-top: -4px;
+}
+
+.ui-tooltip-content:before {
+  border-color: rgba(255, 255, 255, 0);
+  border-right-color: #fff!important;
+  border-width: 6px;
+  margin-top: -6px;
+}
+
+.ui-tooltip {
+  background: #fff!important;
+  color: #606060!important;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15)!important;
+  border-radius: 2px!important;
+  border: #DADADA solid 1px!important;
+  font: $regularFont;
+  font-size: 12px;
+  border-width: 1px;
+  line-height: 1.3em;
+  z-index: 99999;
+}
+
+.ui-tooltip:after {
+  border-width: 0!important;
+}
+

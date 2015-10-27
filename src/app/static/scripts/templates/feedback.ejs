@@ -1,0 +1,110 @@
+<div id="dialog_feedback_<%= uuid %>" class="feedback">
+  <div class="feedback__container js-first-container">
+    <div class="feedback__header">
+      Submit Feedback
+
+      <div class="feedback__close js-cancel-btn">
+        <i class="glyphicon glyphicon-remove-circle"></i>
+      </div>
+    </div>
+    <div class="feedback__content">
+      <div class="feedback__content--header">
+        <%= short_title %>
+      </div>
+      <div class="feedback__content--body">
+        <%= short_cleaned_content %>
+      </div>
+      <div class="feedback__not-related">
+        <div class="btn btn-white js-not-related-btn">
+          Not Tobacco Related?
+        </div>
+      </div>
+      <div class="feedback__selectors">
+        <div class="row feedback__selector">
+          <div class="col-md-6">
+            <div class="feedback__title">
+              Category: <span class="feedback__title-v"><%= category_text %></span>
+            </div>
+            <div class="js-category-1-block">
+              <div class="btn btn-white js-category-incorrect-btn">Incorrect?</div>
+            </div>
+            <div style="display: none; height: 33px;" class="js-category-2-block">
+              <select class="btn btn-white feedback__incorrect_select">
+                <option value="">Select Correct Category</option>
+              </select>
+              <div class="btn btn-gray js-category-cancel-btn">Cancel</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="feedback__title">
+              Language: <span class="feedback__title-v"><%= language %></span>
+            </div>
+            <div class="js-language-1-block">
+              <div class="btn btn-white js-language-incorrect-btn">Incorrect?</div>
+            </div>
+            <div style="display: none; height: 33px;" class="js-language-2-block">
+              <select class="btn btn-white feedback__incorrect_select">
+                <option value="">Select Correct Language</option>
+              </select>
+              <div class="btn btn-gray js-language-cancel-btn">Cancel</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row feedback__selector">
+          <div class="col-md-6">
+            <div class="feedback__title">
+              <% var lastR = Object.keys(regions)[Object.keys(regions).length - 1]; %>
+              Region:
+              <% for(var r in regions) { %>
+                <span class="feedback__title-v"><%= r %></span>
+              <% if (regions[lastR] != regions[r]) { %>,<% } %>
+              <% } %>
+            </div>
+            <div class="js-region-1-block">
+              <div class="btn btn-white js-region-incorrect-btn">Incorrect?</div>
+            </div>
+            <div style="display: none; height: 33px;" class="js-region-2-block">
+              <select class="btn btn-white feedback__incorrect_select">
+                <option value="">Select Correct Region</option>
+              </select>
+              <div class="btn btn-gray js-region-cancel-btn">Cancel</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="feedback__title">
+              <% var lastC = Object.keys(countries)[Object.keys(countries).length - 1]; %>
+              Country:
+              <% for(var c in countries) { %>
+              <span class="feedback__title-v"><%= c %></span>
+              <% if (countries[lastC] != countries[c]) { %>,<% } %>
+              <% } %>
+            </div>
+            <div class="js-country-1-block">
+              <div class="btn btn-white js-country-incorrect-btn">Incorrect?</div>
+            </div>
+            <div style="display: none; height: 33px;" class="js-country-2-block">
+              <select class="btn btn-white feedback__incorrect_select">
+                <option value="">Select Correct Country</option>
+              </select>
+              <div class="btn btn-gray js-country-cancel-btn">Cancel</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feedback__tell-more">
+        <div class="feedback__title">Tell us more</div>
+        <textarea></textarea>
+      </div>
+    </div>
+    <div class="feedback__submit btn btn-blue js-submit-btn">
+      Submit
+    </div>
+  </div>
+  <div class="feedback__container js-second-container" style="display: none">
+    <div class="feedback__thankyou">Thank you</div>
+    <div class="feedback__msg">Your feedback has been submitted.</div>
+  </div>
+</div>

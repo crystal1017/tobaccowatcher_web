@@ -1,0 +1,248 @@
+{% extends "alert.html" %}
+{% load i18n %}
+
+{% block page_content %}
+  <div class="col-xs-12" id="alerts-edit" style="padding-bottom: 150px;">
+    <div class="alerts" id="alerts">
+      <form id="filters" action="">
+        <div class="filters-container">
+          {% if alert %}
+            <h3>Update Alert</h3>
+          {% else %}
+            <h3>Create Alert <span class="js-reset">Reset</span></h3>
+          {% endif %}
+
+          <div class="search-container widget">
+            <section class="alert-name">
+              <h4>Alert Name <span class="help">Give your alert a recognizable name</span></h4>
+
+              {{ form.name }}
+              <span>This field is required. Please enter a title.</span>
+            </section>
+          </div>
+
+          <div class="search-container widget">
+            <section class="keywords">
+              <h4>Search Terms <span class="help">Your alert will only return articles with these keywords or phrases, or you can leave it blank</span></h4>
+
+              <input name="t" value="{{ terms }}" />
+            </section>
+          </div>
+
+          <div class="search-container widget">
+            <section class="categories">
+              <h4>Category <span class="help">Your alert will only return articles within these categories</span></h4>
+              <div class="row">
+                <div class="col-xs-3">
+                  {% for category in categories %}
+                    {% if category.id != 'other' %}
+                      <div class="category-button{% if category.is_active %} active{% endif %}">
+                        <div class="cat-mini {{ category.class }}-mini{% if category.is_active %} active{% endif %}"
+                                title="{{ category.name }}">
+                          <i>{{ category.short }}</i>
+                          <input type="checkbox"
+                                 name="c"
+                                 style="display:none;"
+                                 value="{{ category.id }}"
+                                 {% if category.is_active %}checked="checked"{% endif %} />
+                        </div>
+                        <span>{{ category.short }}</span>
+                      </div>
+                    {% endif %}
+
+                    {% if forloop.counter|divisibleby:2 %}
+                      </div>
+                      <div class="col-xs-3">
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="search-container widget">
+            <section class="geography">
+              <h4>Location <span class="help">Your alert will only return articles within these locations</span></h4>
+
+              <div class="row">
+                <div class="col-xs-3">
+                  {% for region in regions %}
+                    {% if region.countries %}
+                      <div class="accordion js-accordion">
+                        <h5 class="region checkbox">
+                          <input type="checkbox"
+                                 class="region"
+                                 name="r"
+                                 id="region-{{ region.id }}"
+                                 value="{{ region.id }}"
+                                 {% if region.is_active %}checked="checked"{% endif %} />
+                          <label for="region-{{ region.id }}">
+                            <i class="glyphicon glyphicon-ok"></i>{{ region.name }}
+                          </label>
+                        </h5>
+                        <div class="checkbox">
+                          {% for country in region.countries %}
+                            <div class="country">
+                              <input type="checkbox"
+                                     class="country"
+                                     name="co"
+                                     id="country-{{ country.id }}"
+                                     value="{{ country.id }}"
+                                     {% if country.is_active %}checked="checked"{% endif %} />
+                              <label for="country-{{ country.id }}">
+                                <i class="glyphicon glyphicon-ok"></i>{{ country.name }}
+                              </label>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% else %}
+                      <div class="accordion ui-accordion ui-widget ui-helper-reset">
+                        <h5 class="region checkbox ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons">
+                          <input type="checkbox"
+                                 class="region"
+                                 name="r"
+                                 id="region-{{ region.id }}"
+                                 value="{{ region.id }}"
+                                 {% if region.is_active %}checked="checked"{% endif %} />
+                          <label for="region-{{ region.id }}">
+                            <i class="glyphicon glyphicon-ok"></i>{{ region.name }}
+                          </label>
+                        </h5>
+                      </div>
+                    {% endif %}
+
+                    {% if forloop.counter|divisibleby:3 %}
+                      </div>
+                      <div class="col-xs-3">
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="search-container widget">
+            <section class="language">
+              <h4>Language <span class="help">Your alert will only return articles in these languages</span></h4>
+
+              <div class="row">
+                {% for language in languages %}
+                  <div class="col-xs-3">
+                    <div class="accordion ui-accordion ui-widget ui-helper-reset">
+                      <h5 class="checkbox ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">
+                        <input type="checkbox"
+                               class="language"
+                               name="la"
+                               id="language-{{ language.id }}"
+                               value="{{ language.id }}"
+                               {% if language.is_active %}checked="checked"{% endif %} />
+                        <label for="language-{{ language.id }}">
+                          <i class="glyphicon glyphicon-ok"></i>{{ language.name }}
+                        </label>
+                      </h5>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </section>
+          </div>
+
+          <div class="search-container widget">
+            <section class="frequency">
+              <h4>Frequency <span class="help">Youâll receive alerts as often as you like, and you can change this anytime</span></h4>
+
+              <div class="row">
+
+                <div class="col-xs-3">
+                  <div class="accordion ui-accordion ui-widget ui-helper-reset alert-frequency">
+                    <h5 class="checkbox ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">
+                      <input type="radio"
+                             class="frequency"
+                             name="frequency"
+                             id="frequency-daily"
+                             value="daily"
+                             {% if alert.frequency == 'daily' or not alert.frequency == True  %}checked="checked"{% endif %} />
+                      <label for="frequency-daily">
+                        <i class="glyphicon glyphicon-ok"></i>Daily
+                      </label>
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-xs-3">
+                  <div class="accordion ui-accordion ui-widget ui-helper-reset alert-frequency">
+                    <h5 class="checkbox ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">
+                      <input type="radio"
+                             class="frequency"
+                             name="frequency"
+                             id="frequency-weekly"
+                             value="weekly"
+                             {% if alert.frequency == 'weekly' %}checked="checked"{% endif %} />
+                      <label for="frequency-weekly">
+                        <i class="glyphicon glyphicon-ok"></i>Weekly
+                      </label>
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-xs-3">
+                  <div class="accordion ui-accordion ui-widget ui-helper-reset alert-frequency">
+                    <h5 class="checkbox ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">
+                      <input type="radio"
+                             class="frequency"
+                             name="frequency"
+                             id="frequency-every-2-weeks"
+                             value="every_2_weeks"
+                             {% if alert.frequency == 'every_2_weeks' %}checked="checked"{% endif %} />
+                      <label for="frequency-every-2-weeks">
+                        <i class="glyphicon glyphicon-ok"></i>Bi-Weekly
+                      </label>
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-xs-3">
+                  <div class="accordion ui-accordion ui-widget ui-helper-reset alert-frequency">
+                    <h5 class="checkbox ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">
+                      <input type="radio"
+                             class="frequency"
+                             name="frequency"
+                             id="frequency-monthly"
+                             value="monthly"
+                             {% if alert.frequency == 'monthly' %}checked="checked"{% endif %} />
+                      <label for="frequency-monthly">
+                        <i class="glyphicon glyphicon-ok"></i>Monthly
+                      </label>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="search-container widget">
+            <section class="sharing">
+              <h4>Share
+                  <span class="help-tooltip alert-share-btn-tooltip">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </span>
+                <span class="help">Enter the email addresses (delimited by semicolon) of those you want to share an alert with and they will be invited</span>
+              </h4>
+                <div class="line" style="display: none">
+                  <input name="share" type="text" value="{% for user in alert.shared.all %}{{ user.email }}{% if not forloop.last %};{% endif %}{% endfor %}"/>
+                </div>
+            </section>
+          </div>
+
+          {% if alert %}
+            <a href="#"
+               class="btn btn-more btn-save-alert save update"
+               data-alert-id="{{ alert.pk }}">Update Alert</a>
+          {% else %}
+            <a href="#"
+               class="btn btn-more btn-save-alert save create">Create Alert</a>
+          {% endif %}
+
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock page_content %}

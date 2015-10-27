@@ -1,0 +1,180 @@
+.sprite {
+  background-image: url(/static/images/icons-sprite.png);
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.cat i {
+  background-image: url(/static/images/icons-sprite.png);
+  background-repeat: no-repeat;
+  display: block;
+  text-indent: -9999em;
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.cat-a, .cat-a-white {
+  &.active, &:hover {
+    background-color: $cat-a !important;
+  }
+}
+
+.cat-a {
+  i {
+    background-position: -44px 0;
+  }
+}
+
+.cat-a-white {
+  i {
+    background-position: 0 -335px;
+  }
+}
+
+.cat-b, .cat-b-white {
+  &.active, &:hover {
+    background-color: $cat-b !important;
+  }
+}
+
+.cat-b {
+  i {
+    background-position: -44px -86px;
+  }
+}
+
+.cat-b-white {
+  i {
+    background-position: 0 -64px;
+  }
+}
+
+.cat-c, .cat-c-white {
+  &.active, &:hover {
+    background-color: $cat-c !important;
+  }
+}
+
+.cat-c {
+  i {
+    background-position: -44px -129px;
+  }
+}
+
+.cat-c-white {
+  i {
+    background-position: -44px -292px;
+  }
+}
+
+.cat-d, .cat-d-white {
+  &.active, &:hover {
+    background-color: $cat-d !important;
+  }
+}
+
+.cat-d {
+  i {
+    background-position: -44px -335px;
+  }
+}
+
+.cat-d-white {
+  i {
+    background-position: -44px -189px;
+  }
+}
+
+.cat-e, .cat-e-white {
+  &.active, &:hover {
+    background-color: $cat-e !important;
+  }
+}
+
+.cat-e {
+  i {
+    background-position: 0 -250px;
+  }
+}
+
+.cat-e-white {
+  i {
+    background-position: 0 -21px;
+  }
+}
+
+.cat-f, .cat-f-white {
+  &.active, &:hover {
+    background-color: $cat-f !important;
+  }
+}
+
+.cat-f {
+  i {
+    background-position: 0 -120px;
+  }
+}
+
+.cat-f-white {
+  i {
+    background-position: -44px -43px;
+  }
+}
+
+.cat-g, .cat-g-white {
+  &.active, &:hover {
+    background-color: $cat-g !important;
+  }
+}
+
+.cat-g {
+  i {
+    background-position: -44px -249px;
+  }
+}
+
+.cat-g-white {
+  i {
+    background-position: 0 -163px;
+  }
+}
+
+.cat-h, .cat-h-white {
+  &.active, &:hover {
+    background-color: $cat-h !important;
+  }
+}
+
+.cat-h {
+  i {
+    background-position: 0 -206px;
+  }
+}
+
+.cat-h-white {
+  i {
+    background-position: 0 -292px;
+  }
+}
+
+.cat-o {
+  i {
+    background: none;
+    background-color: $cat-o !important;
+    width: 42px;
+  }
+}
+
+.cat-none {
+  i {
+    background: none;
+    background-color: $cat-none !important;
+    width: 42px;
+  }
+}

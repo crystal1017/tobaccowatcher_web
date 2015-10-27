@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load tobaccotags %}
+
+{% block body_classes %}class="static-page-body"{% endblock body_classes %}
+
+{% block header_content %}
+  <header class="wrap banner" role="banner">
+      <!--<div class="news-feed">-->
+        <!--<h2>Trending</h2>-->
+        <!--<ul id="news-ticker"></ul>-->
+      <!--</div>-->
+      <!--<div class="share pull-right">-->
+        <!--Share Us!-->
+        <!--<a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ HOSTNAME|urlencode }}&p[images][0]=&p[title]=Tobacco+Watcher&p[summary]={{ SHARE_DESC|urlencode }}" style="margin-left: 10px;" target="_blank"><img width="32" src="/static/images/facebook.png"></a>-->
+        <!--<a href="https://twitter.com/intent/tweet?source=webclient&text={{ HOSTNAME|urlencode }}+{{ SHARE_DESC|urlencode }}" target="_blank"><img width="32" src="/static/images/twitter.png"></a>-->
+      <!--</div>-->
+    {% get_menu %}
+  </header>
+{% endblock header_content %}
+
+{% block main_content %}
+  <div class="static-page">
+    <div class="container" role="document">
+      <div class="row">
+        {% block page_content %}{% endblock page_content %}
+      </div>
+    </div>
+  </div>
+{% endblock main_content %}
+
+{% block footer_content %}
+<footer class="contentinfo" role="contentinfo">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Contact Us</h4>
+        <p><a href="mailto:contact@tobaccowatcher.org">contact@tobaccowatcher.org</a></p>
+      </div>
+      <div class="col-md-6 text-right">
+        <ul class="list-inline list-unstyled">
+          <li>
+            <a href="http://globaltobaccocontrol.org/" target="_blank"><img src="/static/images/logo-global-tobacco.png" alt="Global Tobacco"/></a>
+          </li>
+          <li>
+            <a href="http://www.jhsph.edu/" target="_blank"><img src="/static/images/logo-john-hopkins.png" alt="John Hopkins"/></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</footer>
+{% endblock footer_content %}

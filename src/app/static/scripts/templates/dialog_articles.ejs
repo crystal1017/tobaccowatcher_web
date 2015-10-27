@@ -1,0 +1,16 @@
+<section class="article-feed">
+  <% for (var i=0; i<c.length; i++) { %>
+    <a href="<%= url %>" class="section-title">
+      <span><%= c[i].name %></span>
+    </a>
+    <% for (var j=0; j<c[i].articles.length; j++) { %>
+      <article>
+        <div class="icon cat<% if (c[i].articles[j].category !== '') { %> <%= c[i].articles[j].category %> <% } else { %> cat-none<% } %>"><i></i></div>
+        <span class="title">
+          <a href="<%= c[i].articles[j].url %>" traget="_blank"><%= c[i].articles[j].title %></a>
+        </span>
+        <p><%= c[i].articles[j].cleaned_content %></p>
+      </article>
+    <% } %>
+  <% } %>
+</section>

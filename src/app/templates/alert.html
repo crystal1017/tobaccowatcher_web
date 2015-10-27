@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load tobaccotags %}
+
+{% block header_content %}
+  <header class="wrap banner" role="banner">
+    {% get_menu %}
+  </header>
+{% endblock header_content %}
+
+{% block main_content %}
+  <div class="container" role="document">
+    <div class="row">
+      {% if messages %}
+      <div class="alert-alert col-xs-12">
+        {% for message in messages %}
+          <div role="alert" data-dismiss="alert" class="alert alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% block page_content %}{% endblock page_content %}
+    </div>
+  </div>
+{% endblock main_content %}
+
+{% block footer_content %}
+<footer class="contentinfo" role="contentinfo">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Contact Us</h4>
+        <p><a href="mailto:contact@tobaccowatcher.org">contact@tobaccowatcher.org</a></p>
+      </div>
+      <div class="col-md-6 text-right">
+        <ul class="list-inline list-unstyled">
+          <li>
+            <a href="http://globaltobaccocontrol.org/" target="_blank"><img src="/static/images/logo-global-tobacco.png" alt="Global Tobacco"/></a>
+          </li>
+          <li>
+            <a href="http://www.jhsph.edu/" target="_blank"><img src="/static/images/logo-john-hopkins.png" alt="John Hopkins"/></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</footer>
+{% endblock footer_content %}

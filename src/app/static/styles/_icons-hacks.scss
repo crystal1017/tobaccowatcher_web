@@ -1,0 +1,17 @@
+.lt-ie9 {
+  // IE8 has weird problem with icons in sidebar
+  .sidebar .categories {
+    .cat i {
+      bottom: auto;
+      right: auto;
+      top: -40%;
+      left: 50%;
+      margin-left: -22px;
+    }
+  }
+
+  // IE8 z-index issue, hide it
+  .cat:after {
+    display: none;
+  }
+}

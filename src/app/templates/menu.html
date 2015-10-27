@@ -1,0 +1,68 @@
+<div class="">
+  <div class="row">
+    <ul class="navbar">
+      <li{% if active_elem == 'home' %} class="active"{% endif %}>
+        <a href="{% url 'index' %}" class="brand pull-left">
+          <img class="logo_svg" src="/static/images/logo-new.svg">
+          <img class="logo_png" src="/static/images/logo-new.png" style="display: none;">
+          <span class="brand-first__part">Tobacco</span>
+          <span class="brand-sec__part">Watcher</span>
+        </a>
+      </li>
+      <li{% if active_elem == 'dashboard' %} class="active"{% endif %}>
+        <a href="{% url 'articles' %}">Articles</a>
+      </li>
+      <li{% if active_elem == 'alerts' %} class="active"{% endif %}>
+        <a href="{% url 'alerts_list' %}">Alerts</a>
+      </li>
+      <li{% if active_elem == 'trends' %} class="active"{% endif %}>
+        <a href="{% url 'trends' %}">Analyses</a>
+      </li>
+      <!-- <li class="pull-right has-btn">
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="btn btn-danger navbar-btn">Log out</a>
+        {% else %}
+        <a href="{% url 'login' %}"  class="btn btn-success navbar-btn">Log in</a>
+        {% endif %}
+      </li>
+      {% if user.is_authenticated %}
+      <li class="pull-right{% if active_elem == 'account' %} active{% endif %}">
+        <a href="{% url 'profile' %}">Account</a>
+      </li>
+      {% endif %}
+      <li class="pull-right{% if active_elem == 'about' %} active{% endif %}">
+        <a href="{% url 'about' %}">About</a>
+      </li> -->
+      {% if user.is_authenticated %}
+      <li class="pull-right icon-link">
+        <div class="btn-group">
+          <a href="{% url 'profile' %}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="ico ico-profile" data-grunticon-embed></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'about' %}"><span class="ico ico-about" data-grunticon-embed></span>About project</a></li>
+            <li><a href="#"><span class="ico ico-settings" data-grunticon-embed></span>Profile settings</a></li>
+            <li><a href="{% url 'logout' %}"><span class="ico ico-logout" data-grunticon-embed></span>Log out</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="pull-right icon-link search-box">
+        <form action="#">
+          <input type="search" id="search-input" placeholder="Type to start searching articles" />
+          <span class="ico ico-search" data-grunticon-embed></span></a>
+        </form>
+      </li>
+      {% else %}
+      <li class="pull-right{% if active_elem == 'about' %} active{% endif %}">
+        <a href="#">Sign up</a>
+      </li>
+      <li class="pull-right{% if active_elem == 'about' %} active{% endif %}">
+        <a href="{% url 'login' %}">Log in</a>
+      </li>
+      <li class="pull-right{% if active_elem == 'about' %} active{% endif %}">
+        <a href="{% url 'about' %}">About</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.realpath(__file__))
+ROOT = os.path.join(ROOT, '..', '..')
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.%(db_engine)s',
+        'NAME': '%(db_name)s',
+        'USER': '%(db_user)s',
+        'PASSWORD': '%(db_passwd)s',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+HOSTNAME = '%(hostname)s'
+ALLOWED_HOSTS = []
+
+MEDIA_ROOT = '%(media_root)s'
+STATIC_ROOT = '%(static_root)s'
+STATIC_URL = '%(static_url)s'
+SERVE_STATIC_FILES = %(serve_static_files)s
+
+SECRET_KEY = '%(secret_key)s'
+
+MONGO_HOST = '%(mongo_host)s'
+MONGO_PORT = %(mongo_port)s
+MONGO_DB_NAME = '%(mongo_db_name)s'
+MONGO_USERNAME = '%(mongo_username)s'
+MONGO_PASSWORD = '%(mongo_password)s'
+
+SOLR_URL = '%(solr_url)s'
+SOLR_META_URL = '%(solr_meta_url)s'
+SOLR_USERNAME = '%(solr_username)s'
+SOLR_PASSWORD = '%(solr_password)s'
+
+EMAIL_BACKEND = '%(email_backend)s'
+EMAIL_USE_TLS = %(email_use_tls)s
+EMAIL_HOST = '%(email_host)s'
+EMAIL_PORT = %(email_port)s
+EMAIL_HOST_USER = '%(email_host_user)s'
+EMAIL_HOST_PASSWORD = '%(email_host_password)s'
+DEFAULT_FROM_EMAIL = '%(default_from_email)s'
+DEFAULT_TO_EMAIL = '%(default_to_email)s'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+        'KEY_PREFIX': 'tobacco_',
+        }
+}
+
+LOG_FILE_PATH = os.path.join('%(log_dir_path)s', '%(log_filename)')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1024*1024*2,
+            'backupCount': 5,
+            'filename': LOG_FILE_PATH,
+            'formatter': 'simple'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'tobaccowatcher.middleware': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        },
+        'tobaccowatcher_web.views': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        },
+        'tobaccowatcher.management.commands.send_emails': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
+    },
+    'formatters': {
+        'simple': {
+            'format': '%(log_format)s'
+        },
+    }
+}

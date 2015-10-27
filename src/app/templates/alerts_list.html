@@ -1,0 +1,398 @@
+{% extends "alert.html" %}
+{% load i18n %}
+
+{% block page_content %}
+  <div class="col-xs-12 alerts alerts-list" id="js-alerts-list">
+    <h3><span class="ico-alert-mine" data-grunticon-embed></span>My Alerts <a class="help-tooltip" data-toggle="tooltip" title="Sign up to receive automated emailed updates about new articles on the topics you care about."><span class="ico ico-help" data-grunticon-embed></span></a> </h3>
+
+    {% if not alerts %}
+      <p>You don't have any own alerts.
+    {% else %}
+      <!-- ****************************************  MY ALERTS  **************************************** -->
+      <div class="row dragdrop clearfix">
+      {% for alert, alert_data, alert_languages in alerts %}
+        <div data-alert-id="{{ alert.id }}" data-alert-is-paused="{{ alert.is_paused|yesno:'false,true' }}" class="single-alert-box col-lg-2 col-md-2 col-sm-4 col-xs-4">
+          <div class="single-alert-title">
+            <a href="#">
+              <span class="ico ico-link" data-grunticon-embed></span>
+              {% if alert.name %}
+                {{ alert.name }}
+              {% else %}
+                {{ alert.pk }}
+              {% endif %}
+            </a>
+          </div>
+          <ul>
+            <li class="categories">Category 
+              <span> 
+                {% for i in alert_data.category_ids %}
+                  <i class="{{i}}">
+                    <span class="ico-bullet"></span>{{ i }}
+                  </i>
+                {% endfor %} 
+              </span>
+              <a data-toggle="tooltip" class="help-tooltip" title="{% for i in alert_data.category_ids %} {{ i }}, {% endfor %}"></a>
+            </li>
+            <li>Location <span> {% for i in alert_data.regions %} <i>{{ i }}</i> {% endfor %}</span> <a data-toggle="tooltip" class="help-tooltip" title="{% for i in alert_data.regions %} {{ i }}, {% endfor %}"></a></li>
+            <li>Language <span> {% for i in alert_languages %} <i>{{ i }}</i> {% endfor %}</span> <a data-toggle="tooltip" class="help-tooltip" title="{% for i in alert_languages %} {{ i }}, {% endfor %}"></a> </li>
+            <li>Frequency <span> {{ alert.frequency }} </span></li>
+            <li>By: {{ alert.updated|date:"d.m.Y" }}
+            <span class="user-name">{% if alert.user.get_shortened_full_name %}
+                  {{ alert.user.get_shortened_full_name }}
+                {% endif %}</span></li>
+          </ul>
+
+          <div>
+            <div class="single-alert-control col-lg-4 col-md-4 col-sm-4 col-xs-4" 
+                  data-alert-id="{{ alert.id }}"
+                  data-alert-is-paused="{{ alert.is_paused|yesno:'false,true' }}">
+                    <div class="alert-run js-toggle">
+                      {% if alert.is_paused %}
+                        <i class="ico ico-play"></i>
+                      {% else %}
+                        <i class="ico ico-pause"></i>
+                      {% endif %}
+                    </div>
+            </div>
+
+            <button class="single-alert-control col-lg-4 col-md-4 col-sm-4 col-xs-4" data-remodal-target="alert"> 
+            <!-- # onclick="location.href='% url 'alerts_edit' alert_id=alert.pk %'" -->
+                <span>Edit</span>
+                <span class="ico-edit" data-grunticon-embed></span>
+            </button>
+            <button class="single-alert-control col-lg-4 col-md-4 col-sm-4 col-xs-4 alert-action js-delete">
+                <span>Delete</span>
+                <span class="ico-delete" data-grunticon-embed></span>
+            </button>
+            <div class="delete-confirmation-box">
+                <p>Are you sure you want to delete this alert?</p>
+                <a href="#" class="btn conf-box-btn delete-alert">
+                  <span>Delete</span>
+                  <span class="ico ico-check"></span>
+                </a>
+                <a href="#" class="btn conf-box-btn hide-conf-box">
+                  <span>No</span>
+                  <span class="ico ico-cancel"></span>
+                </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <div class="single-alert-box create-alert-box col-lg-2 col-md-2 col-sm-4 col-xs-4">
+          <a data-remodal-target="alert"> <!-- {% url 'alerts_edit' %} --> 
+          <p>
+            <span class="ico ico-alert-mine ico-alert-mine-add-alert" data-grunticon-embed></span>
+            Add Alert
+          </p>
+          <p class="add-alert-bg"><span class="ico-add-alert" data-grunticon-embed></span></p>
+          <p class="create-alert-bottom-info">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin ultricies mauris.
+          </p>
+          </a>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <!-- **************************************** RECCOMENDED AND SHARED ALERTS **************************************** -->
+
+      <div class="row"><!-- alerts-list-table -->
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active">
+            <h3>
+              <a href="#recommended-alerts" aria-controls="recommended-alerts" role="tab" data-toggle="tab">
+                <span class="ico ico-alert-reccomended" data-grunticon-embed></span>
+                <i class="alerts-count">1</i>
+                Recommended alerts 
+                <span class="help-tooltip" data-toggle="tooltip" title="Alerts that been shared with you by other users"> 
+                  <span class="ico ico-help" data-grunticon-embed></span>
+                </span>
+              </a>
+            </h3>
+          </li>
+          <li>
+            <h3>
+              <a href="#shared-alerts" aria-controls="shared-alerts" role="tab" data-toggle="tab">
+                <span class="ico ico-alert-shared" data-grunticon-embed></span>
+                <i class="alerts-count">20</i>
+                Shared alerts 
+                <span class="help-tooltip" data-toggle="tooltip" title="Alerts that been shared with you by other users"> 
+                  <span class="ico ico-help" data-grunticon-embed></span>
+                </span>
+              </a>
+            </h3>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="recommended-alerts">
+            <div class="no-alerts">
+              <p>You don't have any reccomended alerts yet</p>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shared-alerts">
+            {% if user.alerts.all %}
+              <div class="dragshared clearfix">
+              {% for alert in user.alerts.all %}
+                <div data-alert-id="{{ alert.id }}" data-alert-is-paused="{{ alert.is_paused|yesno:'false,true' }}" class="single-alert-box col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                  <div class="single-alert-title">
+                    <a href="#">
+                      <span class="ico ico-link" data-grunticon-embed></span>
+                      {% if alert.name %}
+                        {{ alert.name }}
+                      {% else %}
+                        {{ alert.pk }}
+                      {% endif %}
+                    </a>
+                  </div>
+
+                  <ul>
+                    <li class="categories">Category 
+                      <span> 
+                        {% for i in alert_data.category_ids %}
+                          <i class="{{i}}">
+                            <span class="ico-bullet"></span>{{ i }}
+                          </i>
+                        {% endfor %} 
+                      </span>
+                      <a data-toggle="tooltip" class="help-tooltip" title="{% for i in alert_data.category_ids %} {{ i }} {% endfor %}"></a>
+                    </li>
+                    <li>Location <span> {% for i in alert_data.regions %} <i>{{ i }}</i> {% endfor %}</span> <a data-toggle="tooltip" class="help-tooltip" title="{% for i in alert_data.regions %} {{ i }}, {% endfor %}"></a></li>
+                    <li>Language <span> {% for i in alert_data.languages %} <i>{{ i }}</i> {% endfor %}</span> <a data-toggle="tooltip" class="help-tooltip" title="{% for i in alert_data.languages %} {{ i }}, {% endfor %}"></a> </li>
+                    <li>Frequency <span> {{ alert.frequency }} </span></li>
+                    <li>By: {{ alert.updated|date:"d.m.Y" }}
+                    <span class="user-name">{% if alert.user.get_full_name %}
+                          {{ alert.user.get_full_name }}
+                        {% endif %}</span></li>
+                  </ul>
+
+                <div>
+                <!-- *** Here should be added if / else statement: if shared / reccomended alert is not approved or dissaproved, show what is below, if it's approved show play/pause, edit and delete controls*** -->
+                  <button class="single-alert-control col-lg-6 col-md-6 col-sm-6 col-xs-6 accept-alert">
+                    <span>Accept</span>
+                    <span class="ico-check ico"></span>
+                  </button>
+                  <button class="single-alert-control col-lg-6 col-md-6 col-sm-6 col-xs-6 ignore-alert">
+                    <span>Ignore</span>
+                    <span class="ico-cancel ico"></span>
+                  </button>
+      <!-- *** If shared/reccomended alert is aceptted show below buttons *** 
+
+                  <div class="single-alert-control col-lg-4 col-md-4 col-sm-4 col-xs-4" 
+                        data-alert-id="{{ alert.id }}"
+                        data-alert-is-paused="{{ alert.is_paused|yesno:'false,true' }}">
+                      <div class="alert-run js-toggle">
+                        {% if alert.is_paused %}
+                          <i class="ico ico-play"></i>
+                        {% else %}
+                          <i class="ico ico-pause"></i>
+                        {% endif %}
+                      </div>
+                  </div>
+
+                  <button class="single-alert-control col-lg-4 col-md-4 col-sm-4 col-xs-4 edit-not-own-alert"> 
+                      <span>Edit</span>
+                      <span class="ico-edit" data-grunticon-embed></span>
+                  </button>
+                  <div class="edit-confirmation-box">
+                      <p>You can't edit Shared Alerts. Instead, would 
+                        you like to duplicate this alert in your My
+                        Alerts folder where you can edit this alert?</p>
+                      <a href="#" class="btn conf-box-btn duplicate-alert">
+                        <span>Duplicate</span>
+                        <span class="ico ico-check"></span>
+                      </a>
+                      <a href="#" class="btn conf-box-btn hide-conf-box">
+                        <span>No</span>
+                        <span class="ico ico-cancel"></span>
+                      </a>
+                  </div>
+                  <button class="single-alert-control col-lg-4 col-md-4 col-sm-4 col-xs-4 alert-action js-delete">
+                      <span>Delete</span>
+                      <span class="ico-delete" data-grunticon-embed></span>
+                  </button>
+                  <div class="delete-confirmation-box">
+                      <p>Are you sure you want to delete this alert?</p>
+                      <a href="#" class="btn conf-box-btn delete-alert">
+                        <span>Delete</span>
+                        <span class="ico ico-check"></span>
+                      </a>
+                      <a href="#" class="btn conf-box-btn hide-conf-box">
+                        <span>No</span>
+                        <span class="ico ico-cancel"></span>
+                      </a>
+                  </div>
+      *** --> 
+                </div>
+              </div>
+              {% endfor %}
+              </div>
+             </div>
+            {% else %}
+            <div class="no-alerts">
+              <p>You don't have any shared alerts yet</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+
+    <!-- **************************************** CREATE AND EDIT MODAL **************************************** -->
+
+    <div class="remodal-bg">
+      <div class="col-lg-6 col-lg-offset-3" data-remodal-id="alert">
+      <a data-remodal-action="cancel" class="remodal-cancel"><span class="ico ico-close" data-grunticon-embed></span></a>
+      <div id="confirmation-box">
+        <p>You didn't create your alert. Do you really want to close this form?</p>
+        <a href="#" data-remodal-action="close" class="btn conf-box-btn remodal-close">
+          <span>Close</span>
+          <span class="ico ico-check"></span>
+        </a>
+        <a href="#" data-remodal-action="confirm" class="btn conf-box-btn remodal-confirm">
+          <span>No</span>
+          <span class="ico ico-cancel"></span>
+        </a>
+      </div>
+      <div id="alerts-edit" style="padding-bottom: 150px;">
+    <div class="alerts" id="alerts">
+      <form id="filters" action="">
+        <div class="filters-container">
+          {% if alert %}
+            <h3>Edit Alert</h3>
+            <p>To edit this alert change the form below</p>
+          {% else %}
+            <h3>Create Alert</h3>
+            <p>To create an alert complete the form</p>
+          {% endif %}
+
+          <ul class="search-container">
+            <li class="row">
+              <div class="col-lg-4">
+                <span class="ico ico-alert-mine" data-grunticon-embed></span>
+                <span>Alert Name*</span>
+              </div>
+              <div class="col-lg-8">
+               <!--  {{ form.name }} -->
+                <input type="text" class="alert-name" name="name" placeholder="Give your alert a recognizable name">
+                <span class="error">This field is required. Please enter a title.</span>
+                <a class="help-tooltip" data-toggle="tooltip" title="Give your alert a recognizable name."><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-lg-4">
+                <span class="ico ico-search" data-grunticon-embed></span>
+                <span>Keywords</span>
+              </div>
+              <div class="col-lg-8">
+                <input name="t" value="{{ terms }}" type="text" placeholder="Your alert will only return articles with these keywords" />
+                <a class="help-tooltip" data-toggle="tooltip" title="Your alert will only return articles with these keywords or phrases, or you can leave it blank."><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-lg-4">
+                <span class="ico ico-category" data-grunticon-embed></span>
+                <span>Categories</span>
+              </div>
+              <div class="col-lg-8">
+                <select class="selectize category-selectize" multiple="multiple" id="category-selectize">
+                  <option value="" disabled selected>Choose Categories...</option>
+                  {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.short }}</option>
+                  {% endfor %}
+                </select>
+                <a class="help-tooltip" data-toggle="tooltip" title="Your alert will only return articles within these categories."><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-lg-4">
+                <span class="ico ico-location" data-grunticon-embed></span>
+                <span>Locations</span>
+              </div>
+              <div class="col-lg-8">
+                <select class="selectize" multiple="multiple" id="location-selectize">
+                  <option value="" disabled selected>Choose Locations...</option>
+                  {% for region in regions %}
+                    <option value="{{ region.id }}">{{ region.name }}</option>
+                  {% endfor %}
+                </select>
+                <a class="help-tooltip" data-toggle="tooltip" title="Your alert will only return articles within these locations"><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-lg-4">
+                <span class="ico ico-languages" data-grunticon-embed></span>
+                <span>Language</span>
+              </div>
+              <div class="col-lg-8">
+                <select class="selectize" multiple="multiple" id="language-selectize">
+                  <option value="" disabled selected>Choose Languages...</option>
+                  {% for language in languages %}
+                    <option value="{{ language.id }}">{{ language.name }}</option>
+                  {% endfor %}
+                </select>
+                <a class="help-tooltip" data-toggle="tooltip" title="Your alert will only return articles in these languages"><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-lg-4">
+                <span class="ico ico-frequency" data-grunticon-embed></span>
+                <span>Frequency</span>
+              </div>
+              <div class="col-lg-8">
+                <label for="frequency-daily"><input type="radio" name="frequency" value="frequency-daily" id="frequency-daily"><span></span>Daily</label>
+                <label for="frequency-weekly"><input type="radio" name="frequency" value="frequency-weekly" id="frequency-weekly"><span></span>Weekly</label>
+                <label for="frequency-bi-weekly"><input type="radio" name="frequency" value="frequency-bi-weekly" id="frequency-bi-weekly"><span></span>Bi-Weekly</label>
+                <label for="frequency-monthly"><input type="radio" name="frequency" value="frequency-monthly" id="frequency-monthly"><span></span>Monthly</label>
+                <a class="help-tooltip" data-toggle="tooltip" title="You’ll receive alerts as often as you like, and you can change this anytime"><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-lg-4">
+                <span class="ico ico-share" data-grunticon-embed></span>
+                <span>Share</span>
+              </div>
+              <div class="col-lg-8">
+                <input name="share" id="share-selectize" class="selectize share-selectize" value="{% for user in alert.shared.all %}{{ user.email }}{% if not forloop.last %};{% endif %}{% endfor %}" placeholder="Enter the email addresses of those you want to share an alert"/>
+                <a class="help-tooltip" data-toggle="tooltip" title="Enter the email addresses (delimited by semicolon) of those you want to share an alert with and they will be invited"><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+            <li class="row comment-row">
+              <div class="col-lg-4">
+                <span class="ico ico-feedback" data-grunticon-embed></span>
+                <span>Comment</span>
+              </div>
+              <div class="col-lg-8">
+                <textarea name="comment" placeholder="Type your message here"></textarea>
+                <a class="help-tooltip" data-toggle="tooltip" title="Some help text"><span class="ico ico-help" data-grunticon-embed></span></a> 
+              </div>
+            </li>
+          </ul>
+          {% if alert %}
+            <button href="#"
+               class="btn btn-more btn-save-alert save update"
+               data-alert-id="{{ alert.pk }}"
+               disabled="true">
+               <span>Save changes</span>
+               <span class="ico-check" data-grunticon-embed></span>
+            </button>
+          {% else %}
+            <button href="#"
+               class="btn btn-more btn-save-alert save create"
+               disabled="true">
+                <span>Create Alert</span>
+                <span class="ico-check" data-grunticon-embed></span>
+            </button>
+               <input type="reset" value="Reset" class="btn-reset" />
+          {% endif %}
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+      </div>
+    </div> 
+
+  </div>
+{% endblock page_content %}

@@ -1,0 +1,8 @@
+[uwsgi]
+socket = 127.0.0.1:%(uwsgi_port)s
+chdir = %(app_root)ssrc
+pythonpath = ..
+env = DJANGO_SETTINGS_MODULE=tobaccowatcher.settings
+module = django.core.handlers.wsgi:WSGIHandler()
+processes = 4
+threads = 2

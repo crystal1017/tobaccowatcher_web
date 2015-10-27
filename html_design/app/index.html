@@ -1,0 +1,252 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tobacco Watcher</title>
+    <meta name="description" content="">
+    <!-- <meta name="viewport" content="width=device-width"> -->
+    <meta name="viewport" content="width=1200">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- Google Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lato|Oswald:400,700,300' rel='stylesheet' type='text/css'>
+
+    <!-- FontAwesome Fonts -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery.ui.core.css">
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery.ui.accordion.css">
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery.ui.dialog.css">
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery.ui.slider.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="scripts/vendor/modernizr.custom.js"></script>
+    <!-- endbuild -->
+
+    <!--[if lte IE 8]>
+    <script src="bower_components/respond/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="home">
+    <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div id="holder">
+
+        <header class="wrap banner" role="banner">
+            <div class="container">
+                <div class="row">
+                    <ul class="navbar">
+                        <li>
+                            <a href="#" class="brand pull-left">
+                                <img class="logo_svg" src="images/logo-new.svg">
+                                <span class="brand-first__part">Tobacco</span>
+                                <span class="brand-sec__part">Watcher</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Articles</a>
+                        </li>
+                        <li>
+                            <a href="#">Alerts</a>
+                        </li>
+                        <li>
+                            <a href="#">Analyses</a>
+                        </li>
+                        <li class="pull-right has-btn">
+                            <a href="#" class="btn btn-danger navbar-btn">Log out</a>
+                        </li>
+                        <li class="pull-right">
+                            <a href="#">Account</a>
+                        </li>
+                        <li class="pull-right">
+                            <a href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="container content">
+
+            <div class="row">
+                <div class="col-md-6 tw-intro">
+                    <a href="#">
+                        <h1>Tobacco Watcher</h1>
+                        <h3>
+                            Counter Intelligence for Tobacco Control <br/>
+                            <span>by delivering and analyzing the world's tobacco-related media</span>
+                        </h3>
+                    </a>
+                </div>
+                <div class="col-md-3 tw-bg-a">
+                    <div id="carousel-articles" class="carousel slide" data-ride="carousel" data-interval="6000">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active"><h2><span class="count">2541564</span> News articles processed</h2></div>
+                            <div class="item"><h2><span>3,432,304</span> Tobacco-related articles</h2></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 tw-bg-b">
+                    <h2><span class="count">33000</span> Unique sources</h2>
+                </div>
+                <div class="col-md-2 tw-bg-c">
+                    <h2>
+                        <span>23</span>
+                        <div id="carousel-languages" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item active">languages</div>
+                                <div class="item">idiomas</div>
+                                <div class="item">اللغات</div>
+                                <div class="item">语言</div>
+                                <div class="item">языки</div>
+                                <div class="item">languages</div>
+                                <div class="item">línguas</div>
+                                <div class="item">ngôn ngữ</div>
+                                <div class="item">ภาษา</div>
+                                <div class="item">bahasa</div>
+                                <div class="item">languages</div>
+                                <div class="item">langues</div>
+                                <div class="item">mga wika</div>
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+                <div class="col-md-4 tw-bg-d">
+                    <h2><span>82</span> Countries</h2>
+                </div>
+            </div>
+
+            <div class="row alerts">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12 image">
+                            <img src="images/temp-b.jpg" alt=""/>
+                        </div>
+                        <div class="col-md-6 tw-alert alt has-hover">
+                            <a href="#">
+                                <div class="content">
+                                    <div class="inner">
+                                        <h3>Create Alerts</h3>
+                                        <p>Create customized email updates to keep tabs on the latest in tobacco control.</p>
+                                        <i class="glyphicon glyphicon-menu-down"></i>
+                                    </div>
+                                </div>
+                                <div class="hover">
+                                    <div class="inner">
+                                        <h2>Create Alerts <i class="glyphicon glyphicon-menu-right"></i></h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 tw-alert">
+                            <h3><a href="#">His Room Smells Cigarettes Ih! This Peaceful Porch Indonesia-Eliminate...</a></h3>
+                            <p><i class="icon-prevalence"></i> <a href="#">Prevalence</a> / 2 hours ago <br/><a href="#" class="more">Read Popular Articles</a></p>
+                        </div>
+                        <div class="col-md-6 tw-alert">
+                            <h3><a href="#">Films with smoking content should be rated 18A to protect kids, group says 15...</a></h3>
+                            <p><i class="icon-prevalence"></i> <a href="#">Prevalence</a> / 4 hours ago <br/><a href="#" class="more">Read Popular Articles</a></p>
+                        </div>
+                        <div class="col-md-6 tw-alert alt has-hover">
+                            <a href="#">
+                                <div class="content">
+                                    <div class="inner">
+                                        <h3>Perform Analyses</h3>
+                                        <p>Analyze trends in tobacco-related media.</p>
+                                        <i class="glyphicon glyphicon-menu-down"></i>
+                                    </div>
+                                </div>
+                                <div class="hover">
+                                    <div class="inner">
+                                        <h2>Perform Analyses <i class="glyphicon glyphicon-menu-right"></i></h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 tw-alert alt large">
+                            <h2>View Articles</h2>
+                            <p>Explore our database of news articles by category.</p>
+                            <hr/>
+                            <h4 class="text-uppercase">Choose a Category</h4>
+                            <div class="article-categories">
+                                <a href="#" class="cat cat-a"><span>Prevalence</span><i></i></a>
+                                <a href="#" class="cat cat-b"><span>Smoke-Free</span><i></i></a>
+                                <a href="#" class="cat cat-c"><span>Quitting</span><i></i></a>
+                                <a href="#" class="cat cat-d"><span>Warnings</span><i></i></a>
+                                <a href="#" class="cat cat-e"><span>Advertising</span><i></i></a>
+                                <a href="#" class="cat cat-f"><span>Prices</span><i></i></a>
+                                <a href="#" class="cat cat-g"><span>Products</span><i></i></a>
+                                <a href="#" class="cat cat-h"><span>Industry</span><i></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 image">
+                            <a href="http://globaltobaccocontrol.org/" target="_blank">
+                                <img src="images/john-hopkins.jpg" alt="John Hopkins Institute"/>
+                            </a>
+                        </div>
+                        <div class="col-md-6 image">
+                            <img src="images/temp-c.jpg" alt=""/>
+                        </div>
+                        <div class="col-md-6 tw-alert">
+                            <h3><a href="#">American Heart Association Praises CVS Foundation's New Partnership with the...</a></h3>
+                            <p><i class="icon-advertising"></i> <a href="#">Advertising</a> / 4 hours ago <br/><a href="#" class="more">Read Popular Articles</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="contentinfo" role="contentinfo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Contact Us</h4>
+                        <p><i class="fa fa-envelope"></i> contact@tobaccowatcher.org</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <ul class="list-inline list-unstyled">
+                            <li>
+                                <a href="http://globaltobaccocontrol.org/" target="_blank"><img src="images/logo-global-tobacco.png" alt="Global Tobacco"/></a>
+
+                            </li>
+                            <li>
+                                <a href="http://www.jhsph.edu/" target="_blank"><img src="images/logo-john-hopkins.png" alt="John Hopkins"/></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="scripts/vendor/jquery-scrollto.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/bootstrap.js -->
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

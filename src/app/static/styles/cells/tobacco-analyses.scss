@@ -1,0 +1,720 @@
+@import "variables";
+
+@keyframes opacity {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@mixin tobacco-analyses-box-shadow {
+    box-shadow: 0 0 7px rgba(#000, 0.3);
+}
+
+.tobacco-analyses {
+    max-width: 940px;
+    padding: 75px 0 100px;
+    margin: auto;
+    background-color: #ebebeb;
+}
+
+.tobacco-analyses__addtrend {
+    width: 162px - 4 - 5;
+    height: 85px;
+    box-sizing: border-box;
+    border: 2px dashed #c4c4c4;
+    line-height: 85px;
+    font-family: $font-special;
+    font-size: 16px;
+    color: #828282;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        border-color: #000;
+        color: #000;
+    }
+
+    svg {
+        width: 14px;
+        margin-right: 4px;
+    }
+}
+
+.tobacco-analyses__area {
+    @include tobacco-analyses-box-shadow;
+    height: 360px - (20px * 2);
+    padding: 20px;
+    position: relative;
+    background-color: #fff;
+}
+
+.tobacco-analyses__area__body {
+    .tobacco-analyses__area--processing & {
+        display: none;
+    }
+}
+
+.tobacco-analyses__area__date {
+    width: 140px;
+    padding: 0 10px;
+    margin-left: 30px;
+    display: inline-block;
+    font-family: $font-special;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+.tobacco-analyses__area__header {
+    height: 25px;
+    position: relative;
+    line-height: 25px;
+
+    .tobacco-analyses__area--processing & {
+        display: none;
+    }
+}
+
+.tobacco-analyses__area__header__info {
+    top: 0;
+    right: 0;
+    position: absolute;
+    line-height: 32px;
+}
+
+.tobacco-analyses__area__header__info__text {
+    width: 300px;
+    right: 30px;
+    position: absolute;
+    font-size: 10px;
+    font-style: italic;
+    vertical-align: middle;
+    text-align: right;
+    opacity: 0;
+
+    &.-saved {
+        transition: opacity 0.3s;
+    }
+
+    .tobacco-analyses__area--modified &.-changes {
+        opacity: 1;
+    }
+
+    .tobacco-analyses__area--saved &.-saved {
+        opacity: 1;
+        transition-duration: 0s;
+    }
+}
+
+p.tobacco-analyses__area__header__info__text {
+    margin: 0;
+    font-size: 10px;
+}
+
+.tobacco-analyses__area__header__menu {
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tobacco-analyses__area__header__menu__item {
+    position: relative;
+    list-style: none;
+
+    &::after {
+        height: 1px;
+        right: 15px;
+        bottom: 0;
+        left: 15px;
+        position: absolute;
+        background-color: #f4f4f4;
+        content: "\0020";
+    }
+
+    &:last-child::after {
+        display: none;
+    }
+
+    a {
+        padding: 0 15px 0 30px;
+        display: block;
+        background-position: 15px;
+        background-repeat: no-repeat;
+        color: #444;
+    }
+}
+
+.tobacco-analyses__area__header__menu__item--save a {
+    background-image: url("/static/images/icon-pinner.png");
+}
+
+.tobacco-analyses__area__header__menu__item--download a {
+    background-image: url("/static/images/icon-download.png");
+}
+
+.tobacco-analyses__area__header__menu__item--close a {
+    background-image: url("/static/images/icon-close.png");
+}
+
+.tobacco-analyses__area__header__menu__list {
+    @include tobacco-analyses-box-shadow;
+    width: 150px;
+    padding: 0;
+    top: -5px;
+    right: 30px;
+    position: absolute;
+    display: none;
+    background-color: #fff;
+    font-size: 11px;
+
+    .tobacco-analyses__area__header__menu--opened & {
+        display: block;
+    }
+}
+
+.tobacco-analyses__area__header__menu__trigger {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+
+    i,
+    i::before,
+    i::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 1px;
+        background-color: #9a9a9a;
+    }
+
+    i {
+        width: 4px;
+        height: 4px;
+        top: 8px;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+
+        &::before,
+        &::after {
+            left: 0;
+            position: absolute;
+            content: "\0020";
+        }
+
+        &::before {
+            top: -6px;
+        }
+
+        &::after {
+            bottom: -6px;
+        }
+    }
+}
+
+.tobacco-analyses__area__processing {
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    display: none;
+
+    .tobacco-analyses__area--processing & {
+        display: block;
+    }
+}
+
+.tobacco-analyses__area__processing__text {
+    width: 100%;
+    top: 48%;
+    left: 0;
+    position: absolute;
+    line-height: 0;
+    font-family: $font-special;
+    font-size: 30px;
+    color: #454545;
+    text-align: center;
+
+    i {
+        width: 4px;
+        height: 4px;
+        margin-left: 2px;
+        display: inline-block;
+        border-radius: 2px;
+        background-color: #51a2f1;
+        text-indent: -100px;
+        overflow: hidden;
+        animation-name: opacity;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+
+        &:nth-child(2) {
+            animation-delay: 100ms;
+        }
+
+        &:nth-child(3) {
+            animation-delay: 300ms;
+        }
+    }
+}
+
+.tobacco-analyses__area__start-screen {
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    display: none;
+    background-color: #5e5e5e;
+    font-size: 12px;
+
+    .tobacco-analyses__area--start-screen & {
+        display: block;
+    }
+
+    strong,
+    p {
+        color: #fff;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    strong {
+        font-family: $font-secondary;
+        font-size: 117%;
+        font-style: italic;
+    }
+}
+
+.tobacco-analyses__area__start-screen__item {
+    width: 200px;
+    position: absolute;
+}
+
+.tobacco-analyses__area__start-screen__item--add,
+.tobacco-analyses__area__start-screen__item--saved {
+    &::after {
+        width: 47px;
+        height: 74px;
+        position: absolute;
+        content: "\0020";
+    }
+}
+
+.tobacco-analyses__area__start-screen__item--add {
+    top: 65px;
+    left: 103px;
+
+    &::after {
+        top: -50px;
+        left: -65px;
+        background: url("/static/images/start-screen__arrow-top.png");
+    }
+}
+
+.tobacco-analyses__area__start-screen__item--saved {
+    margin-left: 70px;
+    bottom: 30px;
+    left: 50%;
+
+    &::after {
+        top: 15px;
+        left: -60px;
+        background: url("/static/images/start-screen__arrow-bottom.png");
+    }
+}
+
+.tobacco-analyses__area__start-screen__item--text {
+    width: 480px;
+    margin-left: -215px;
+    top: 120px;
+    left: 55%;
+    font-size: 14px;
+}
+
+.tobacco-analyses__area__title-info {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #a7a7a7;
+    line-height: 16px;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.tobacco-analyses__area__title {
+    margin: 0;
+    display: inline-block;
+    font-family: $font-special;
+    font-size: 20px;
+    color: #444;
+    vertical-align: middle;
+}
+
+.tobacco-analyses__area__tooltip {
+    @include tobacco-analyses-box-shadow;
+    width: 168px;
+    margin-left: -84px;
+    top: 20px;
+    left: 50%;
+    position: absolute;
+    background-color: #fff;
+    color: #454545;
+
+    ul {
+        padding: 0 10px;
+        margin: 5px 0;
+        font-size: 12px;
+        list-style-type: none;
+    }
+
+    li {
+        height: 24px;
+        line-height: 24px;
+    }
+
+    i {
+        width: 5px;
+        height: 5px;
+        float: left;
+        margin-top: 9px;
+        margin-right: 5px;
+    }
+
+    strong {
+        font-weight: normal;
+        float: left;
+    }
+
+    b {
+        float: right;
+    }
+}
+
+.tobacco-analyses__area__tooltip__title,
+.tobacco-analyses__area__tooltip__footer {
+    &::after {
+        width: 148px;
+        height: 1px;
+        left: 10px;
+        position: absolute;
+        content: "\0020";
+        background-color: #ebebeb;
+    }
+}
+
+.tobacco-analyses__area__tooltip__title {
+    padding: 0 10px;
+    position: relative;
+    line-height: 33px;
+    font-size: 12px;
+    font-weight: bold;
+
+    &::after {
+        top: 100%;
+    }
+}
+
+.tobacco-analyses__area__tooltip__footer {
+    padding: 0 10px;
+    position: relative;
+    display: block;
+    line-height: 33px;
+    font-size: 12px;
+    color: #454545;
+
+    &::after {
+        top: 0;
+    }
+}
+
+.tobacco-analyses__area__tooltip__footer {
+    padding-left: 31px;
+    background: url("/static/images/icon-analyse-article.png") no-repeat 10px;
+}
+
+.tobacco-analyses__aside__header {
+    margin: 25px 0;
+    position: relative;
+    text-align: center;
+}
+
+.tobacco-analyses__aside__item {
+    @include tobacco-analyses-box-shadow;
+    width: 31%;
+    height: 145px;
+    padding: 7px;
+    margin: 0 1% 20px;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    background-color: #fff;
+    line-height: 1.3;
+    font-size: 10px;
+    vertical-align: top;
+}
+
+.tobacco-analyses__aside__item__current {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    display: none;
+    background-color: rgba(#ebebeb, 0.5);
+    line-height: 145px;
+    font-family: $font-special;
+    font-size: 16px;
+    color: #454545;
+    text-align: center;
+
+    .tobacco-analyses__aside__item--current & {
+        display: block;
+    }
+}
+
+.tobacco-analyses__aside__item__preview {
+    width: 100%;
+    height: 91px;
+    overflow: hidden;
+
+    svg {
+        margin-left: -20px;
+        transform: scale(0.36);
+        transform-origin: 0 0;
+    }
+}
+
+.tobacco-analyses__aside__item__remove {
+    width: 19px;
+    height: 19px;
+    top: 8px;
+    right: 8px;
+    position: absolute;
+    line-height: 19px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #b5b5b5;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        color: #000;
+    }
+}
+
+.tobacco-analyses__aside__item__title {
+    padding: 10px;
+    font-family: $font-special;
+    font-size: 16px;
+    color: #454545;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.tobacco-analyses__aside__items {
+    line-height: 0;
+    font-size: 0;
+}
+
+.tobacco-analyses__aside__sort {
+    margin-right: 30px;
+    position: relative;
+    display: inline-block;
+    line-height: 30px;
+    font-family: $font-special;
+    font-size: 12px;
+    color: #838383;
+    vertical-align: middle;
+
+    &.-active::after {
+        right: -15px;
+        margin-top: -2px;
+        top: 50%;
+        position: absolute;
+        display: block;
+        border-width: 5px 5px 0;
+        border-style: solid;
+        border-color: #838383 transparent;
+        content: "\0020";
+    }
+
+    &.-inverse::after {
+        margin-top: -1px;
+        border-width: 0 5px 5px;
+    }
+}
+
+.tobacco-analyses__aside__sorts {
+    right: 0;
+    top: 0;
+    position: absolute;
+    line-height: 0;
+    font-size: 0;
+}
+
+.tobacco-analyses__aside__tab {
+    height: 30px;
+    padding: 0 10px;
+    margin-right: -1px;
+    display: inline-block;
+    border: 1px solid #cacaca;
+    background-color: #ebebeb;
+    line-height: 30px;
+    font-family: $font-special;
+    font-size: 12px;
+    color: #838383;
+    text-decoration: none;
+    vertical-align: middle;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &.-active {
+        background-color: #fff;
+        color: #911b27;
+    }
+}
+
+.tobacco-analyses__aside__tabs {
+    line-height: 0;
+    font-size: 0;
+}
+
+.tobacco-analyses__aside__tooltip {
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #a7a7a7;
+    line-height: 16px;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.tobacco-analyses__description {
+    margin-top: 5px;
+    font-family: $font-secondary;
+    font-size: 15px;
+    color: #828282;
+}
+
+.tobacco-analyses__tab-container {
+    &.-hidden {
+        display: none;
+    }
+}
+
+.tobacco-analyses__trend {
+    @include tobacco-analyses-box-shadow;
+    width: 162px - (5px * 2);
+    height: 85px;
+    padding: 5px 0 5px (5px + 2);
+    position: relative;
+    background-color: #fff;
+    cursor: pointer;
+    transition: opacity 0.1s;
+
+    &.-inactive {
+        opacity: 0.5;
+        user-select: none;
+        cursor: default;
+    }
+
+    &.-tpl {
+        display: none;
+    }
+}
+
+.tobacco-analyses__trend__color {
+    width: 2px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+
+    .tobacco-analyses__trend:hover & {
+        width: 4px;
+    }
+}
+
+.tobacco-analyses__trend__remove {
+    width: 10px;
+    height: 10px;
+    top: 11px;
+    right: 11px;
+    position: absolute;
+    line-height: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+
+    &:hover {
+        color: #444;
+    }
+}
+
+.tobacco-analyses__trend__text {
+    height: 4.2em;
+    position: relative;
+    line-height: 1.4em;
+    font-family: $font-special;
+    font-size: 10px;
+    color: #1d1d1d;
+    overflow: hidden;
+}
+
+.tobacco-analyses__trend__title {
+    margin-bottom: 5px;
+    line-height: 1.3;
+    font-family: $font-special;
+    font-size: 16px;
+    color: #464646;
+}
+
+.tobacco-analyses__trends {
+    margin: 40px 0 20px;
+    position: relative;
+    line-height: 0;
+    font-size: 0;
+}
+
+.tobacco-analyses__trends__item {
+    margin-right: 4px;
+    margin-bottom: 10px;
+    display: inline-block;
+    vertical-align: top;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.modalwin__field--locations, .modalwin__field--keywords {
+    .tobacco-analyses__aside__tooltip {
+        margin: 0 5px;
+    }
+}

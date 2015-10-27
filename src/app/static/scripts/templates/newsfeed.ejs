@@ -1,0 +1,12 @@
+<li>
+  <a href="<%= articles[articles.length-1].url %>" target="_blank">
+    <h5><%= articles[articles.length-1].title %></h5>
+  </a>
+</li>
+<% for (var i=0; i<articles.length; i++) { %>
+<li>
+  <a href="<%= articles[i].url %>" target="_blank">
+    <h5><%= articles[i].title %></h5>
+  </a>
+</li>
+<% } %>

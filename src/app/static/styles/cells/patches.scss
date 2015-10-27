@@ -1,0 +1,219 @@
+@import 'variables';
+
+$bgcolor: #ebebeb;
+
+body {
+    &.-locked {
+        overflow: hidden;
+        }
+
+    &.page--tobacco-analyses {
+        padding-top: 47px;
+
+        .static-page {
+            padding-bottom: 130px;
+
+            background-color: $bgcolor;
+            }
+
+        .container[role='document'] > .row {
+            margin-bottom: 0;
+
+            background-color: $bgcolor;
+            }
+        }
+    }
+
+.title {
+    font-family: $font-special;
+    font-size: 20px;
+    }
+
+.date-picker-wrapper .drp_top-bar .apply-btn {
+    line-height: 18px;
+    }
+
+.custom-shortcut.-active a {
+    color: #999;
+    text-decoration: none;
+    }
+
+.ui-tooltip {
+    border: 0;
+    background: #828282;
+    box-shadow: none;
+
+    font-size: 10px;
+    color: #fff;
+
+    &::after {
+        max-width: 165px;
+        margin-top: -10px;
+        top: 50%;
+        left: -10px;
+        position: absolute;
+
+        border-width: 10px 10px 10px 0;
+        border-style: solid;
+        border-color: transparent #828282 transparent transparent;
+
+        content: '\0020';
+        }
+    }
+
+.select2.select2 {
+    font-size: 12px;
+    }
+
+.select2__item {
+    padding-left: 17px;
+    display: block;
+    position: relative;
+
+    i {
+        width: 11px;
+        height: 11px;
+        margin-top: -5px;
+        top: 50%;
+        left: 0;
+        position: absolute;
+
+        background: url('/static/images/icons-mini-sprite.png') no-repeat 0;
+        background-size: 22px;
+        }
+    }
+.select2__item--prevalence i {
+    background-position: -11px 0;
+    }
+.select2__item--smoke-free i {
+    background-position: -11px -21px;
+    }
+.select2__item--quitting i {
+    background-position: -11px -32px;
+    }
+.select2__item--warnings i {
+    background-position: -11px -84px;
+    }
+.select2__item--advertising i {
+    background-position: 0 -63px;
+    }
+.select2__item--prices i {
+    background-position: 0 -30px;
+    }
+.select2__item--products i {
+    background-position: 0 -62px;
+    }
+.select2__item--industry i {
+    background-position: 0 -52px;
+    }
+
+.select2-selection__choice .select2__item {
+    padding: 0 10px 0 12px;
+    }
+
+.select2.select2 .select2-selection {
+    min-height: 0;
+    height: 25px;
+    position: relative;
+
+    border-radius: 0;
+    border-color: #d3d3d3;
+    background-color: #e9e9e9;
+
+    &::after {
+        margin-top: -2px;
+        top: 50%;
+        right: 10px;
+        position: absolute;
+
+        border-width: 5px 5px 0;
+        border-style: solid;
+        border-color: #828282 transparent;
+
+        content: '\0020';
+        }
+
+    &::before {
+        width: 30px;
+        height: 23px;
+        top: 0;
+        right: 0;
+        position: absolute;
+
+        background-color: rgba(233, 233, 233, 0.8);
+
+        content: '\0020';
+        }
+    }
+
+.select2.select2.select2-container--open .select2-selection::after {
+    margin-top: -1px;
+
+    border-width: 0 5px 5px;
+    }
+
+.select2.select2 .select2-selection .select2-selection__choice {
+    height: 21px;
+    margin-top: 1px;
+    margin-right: 2px;
+    display: inline-block;
+    float: none;
+
+    border-radius: 2px;
+    border-color: #afafaf;
+    background-color: #fdfdfd;
+
+    line-height: 21px;
+    color: #5c5c5c;
+    }
+
+.select2.select2 .select2-selection .select2-search__field {
+    height: 23px;
+    padding: 0 8px;
+    margin-top: 0;
+
+    line-height: 23px;
+    font-size: 14px;
+    }
+
+.select2-container--default {
+    z-index: 9000;
+}
+
+.select2.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    float: right;
+    margin-right: 0;
+    margin-left: 2px;
+    line-height: 19px;
+    }
+
+.select2.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding: 0 3px;
+    }
+
+.select2.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: #d3d3d3;
+    }
+
+.select2-dropdown.select2-dropdown {
+    border-color: #d3d3d3;
+    border-radius: 0 !important;
+    background-color: #e9e9e9;
+    }
+
+.select2-dropdown .select2-selection__rendered {
+    white-space: nowrap;
+    text-align: left;
+    }
+
+.select2-dropdown .select2-results__option {
+    padding: 0 9px;
+
+    line-height: 23px;
+    font-size: 12px;
+    color: #5c5c5c;
+    }
+
+.select2-container .select2-search.select2-search--inline {
+    float: none;
+    }

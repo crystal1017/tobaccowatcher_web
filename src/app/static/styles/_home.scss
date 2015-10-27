@@ -1,0 +1,221 @@
+.tw-intro {
+  background: url(/static/images/tobacco-watcher-bg.png) center no-repeat;
+  background-size: cover;
+  height: 260px;
+  padding: 70px 25px 10px;
+  a {
+    color: white;
+  }
+  h1 {
+    font-size: 52px;
+    font-family: $specialFont;
+    margin-bottom: 0;
+  }
+  h3 {
+    font-size: 36px;
+    font-family: $specialFont;
+    font-weight: 300;
+    margin-top: 10px;
+    span {
+      display: block;
+      font-family: $font-family-sans-serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 38px;
+    }
+  }
+}
+
+.tw-bg-a,
+.tw-bg-b,
+.tw-bg-c,
+.tw-bg-d {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 130px;
+
+  h2 {
+    font-family: $specialFont;
+    font-size: 18px;
+    text-transform: uppercase;
+    > span {
+      display: block;
+    }
+    span {
+      font-size: 50px;
+      line-height: 70px;
+    }
+  }
+}
+
+.tw-bg-a {
+  background-image: url(/static/images/tw-bg-a.jpg);
+}
+
+.tw-bg-b {
+  background-image: url(/static/images/tw-bg-b.jpg);
+}
+
+.tw-bg-c {
+  background-image: url(/static/images/tw-bg-c.jpg);
+}
+
+.tw-bg-d {
+  background-image: url(/static/images/tw-bg-d.jpg);
+}
+
+$alert-height: 209px;
+
+.tw-alert {
+  height: $alert-height;
+  overflow: hidden;
+  background: white;
+  a {
+    color: $brand-danger;
+  }
+  h3 {
+    margin-top: 14px;
+    a {
+      font-size: 26px;
+      line-height: 32px;
+    }
+  }
+  p {
+    color: #808080;
+    a {
+      color: inherit;
+      font-weight: bold;
+    }
+  }
+  .more {
+    display: inline-block;
+    color: $brand-danger;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  &.alt {
+    background: #454545;
+    text-align: center;
+    position: relative;
+    a {
+      display: block;
+      height: 100%;
+      color: white;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    p {
+      font-size: 18px;
+      color: inherit;
+    }
+    hr {
+      width: 62px;
+      border-top: 4px solid #6f6f6f;
+    }
+    .content, .hover {
+      display: table;
+      position: relative;
+      transition: 0.4s top;
+      top: 0;
+      padding: 0 20px;
+      height: 100%;
+      width: 100%;
+      .inner {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    .hover {
+      h2 {
+        font-size: 28px;
+        i {
+          font-size: 20px;
+          vertical-align: 3px;
+        }
+      }
+    }
+    a:hover {
+      .content, .hover {
+        top: -$alert-height;
+      }
+    }
+    .article-categories {
+      margin-top: 26px;
+    }
+  }
+  &.large {
+    height: ($alert-height * 2);
+    h2 {
+      margin-top: 30px;
+    }
+  }
+  &.has-hover {
+    transition: 0.4s background-color;
+    &:hover {
+      background-color: $brand-danger;
+    }
+  }
+}
+
+body.home {
+  padding-top: 70px;
+  .content > .row {
+    margin-bottom: 20px;
+  }
+  .row.alerts {
+    width: auto;
+  }
+  .row > .image {
+    padding: 0;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  a.cat {
+    float: left;
+    display: block;
+    position: relative;
+    width: 63px;
+    height: 78px;
+    margin: 0 2px 2px 0;
+    background-color: #6f6f6f;
+    overflow: hidden;
+    span {
+      font-size: 10px;
+      opacity: 0;
+      transition: 0.3s opacity;
+      font-style: italic;
+    }
+    i {
+      transition: 0.3s top;
+      opacity: 0.6;
+    }
+    &:hover {
+      i {
+        top: 10px;
+      }
+      span {
+        opacity: 1;
+      }
+    }
+  }
+  #articles-slider {
+    position: relative;
+    width: 100%;
+    height: 24px;
+    list-style: none;
+    li {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $specialFont;
+  }
+}

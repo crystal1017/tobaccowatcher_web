@@ -1,0 +1,92 @@
+{% extends "static_page.html" %}
+{% load i18n %}
+
+{% block head_scripts %}
+    <!-- build:css(app/static) /static/styles/graphs.css -->
+    <link rel="stylesheet" href="bower_components/chosen/public/chosen.css">
+    <link rel="stylesheet" href="bower_components/dcjs/dc.css">
+    <!-- endbuild -->
+{% endblock head_scripts %}
+
+{% block page_content %}
+  <div class="col-xs-12 alerts" id="trends">
+    <h1>Trends <a href="#" class="new-trend-btn">+ New Trend</a></h1>
+
+    <div class="trends-control-tmp" style="display: none;">
+      <div class="row trends-control">
+        <form>
+          <div class="keywords col-xs-2">
+            <input name="t" placeholder="Add Keywords"/>
+          </div>
+          <div class="categories col-xs-4">
+            <select name="c" data-placeholder="Choose categories" class="chosen-select" multiple="" tabindex="-1">
+              <option value=""></option>
+              {% for c in categories %}
+                {% if c.id != 'other' %}
+                  <option value="{{ c.id }}">{{ c.name }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="locations col-xs-2">
+            <select name="r" data-placeholder="Choose locations" class="chosen-select" multiple="" tabindex="-1">
+              <option value=""></option>
+              <optgroup label="REGIONS">
+                {% for r in regions %}
+                  <option value="{{ r.id }}">{{ r.name }}</option>
+                {% endfor %}
+              </optgroup>
+              {% for r in regions %}
+                <optgroup label="{{ r.name|upper }}">
+                  {% for c in r.countries %}
+                    <option value="{{ c.id }}">{{ c.name }}</option>
+                  {% endfor %}
+                </optgroup>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="languages col-xs-2">
+            <select name="la" data-placeholder="Choose languages" class="chosen-select" multiple="" tabindex="-1">
+              <option value=""></option>
+              {% for l in languages %}
+                <option value="{{ l.id }}">{{ l.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="controls col-xs-2">
+            <button class="btn btn-default" style="text-transform: none;">Calculate Trend</button>
+            <div><i class="glyphicon glyphicon-remove"></i></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="trends-controls">
+
+    </div>
+
+    <div class="trends-timeframe">
+      <span>Articles over Time</span>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default day-btn">Day</button>
+        <button type="button" class="btn btn-default week-btn">Week</button>
+        <button type="button" class="btn btn-default month-btn">Month</button>
+      </div>
+      <div class="timeframe">
+        <span>Timeframe</span>
+        <div class="right-inner-addon">
+          <i class="glyphicon glyphicon-calendar"></i>
+          <input type="text" id="from_date" />
+        </div>
+        <div>-</div>
+        <div class="right-inner-addon">
+          <i class="glyphicon glyphicon-calendar"></i>
+          <input type="text" id="to_date" />
+        </div>
+      </div>
+    </div>
+    <div id="trends-plot" class="trends-plot">
+
+    </div>
+  </div>
+{% endblock page_content %}

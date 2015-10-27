@@ -1,0 +1,156 @@
+/*******************************************************
+ ** Sidebar area
+********************************************************/
+
+.sidebar {
+  width: 29.5%;
+
+  .btn-sidebar {
+    float: left;
+    background: #454545;
+    color: #a7a7a7;
+    height: 45px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 14px 0;
+    line-height: 1;
+    margin-bottom: $margin-bottom;
+
+    &:hover {
+      background-color: $brand-danger;
+      color: white;
+    }
+  }
+
+  .btn-alerts {
+    width: 48%;
+  }
+
+  .filters-container {
+    clear: left;
+    background: #454545;
+    padding: 17px 16px;
+    @include border-radius(4px);
+
+    h3 {
+      font-family: $specialFont;
+      letter-spacing: 2px;
+      color: #ebebeb;
+      margin-top: 0px;
+      margin-left: 1px;
+      margin-right: 10px;
+
+      a {
+        margin-top: 9px;
+        color: #6f6f6f;
+        font-size: 16px;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: #7c7c7c;
+      }
+    }
+
+    .widget {
+      background-color: $gray-dark;
+      border: 1px solid #4e4e4e;
+      padding: 18px 15px;
+      margin-bottom: 15px;
+      @include border-radius(4px);
+
+      h4 {
+        text-transform: uppercase;
+        color: #d1d1d1;
+        font-size: 15px;
+        font-family: $specialFont;
+        letter-spacing: 2px;
+        margin: 0 0 20px;
+      }
+    }
+
+    .search-results {
+      .result {
+        margin-bottom: 10px;
+        .close {
+          @extend .sprite;
+          @extend .icon-close;
+          display: inline-block;
+          text-indent: -9999em;
+          float: none;
+          vertical-align: middle;
+          padding: 0;
+          margin-right: 5px;
+          background-color: #454545;
+          @include text-shadow(none);
+          @include opacity(1);
+        }
+      }
+    }
+
+    .search-container {
+      padding: 0;
+
+      > section {
+        border-top: 1px solid #484848;
+        border-bottom: 1px solid #1f1f1f;
+        padding: 18px 15px;
+
+        &:first-of-type {
+          border-top: none;
+        }
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+
+      .categories {
+        overflow: auto;
+      }
+
+      .geography {
+        padding-bottom: 32px;
+      }
+
+      .language {
+        padding-bottom: 32px;
+      }
+
+      .timeframe {
+        padding-bottom: 32px;
+
+        .ranges {
+          overflow: auto;
+
+          p {
+            color: #666;
+            font-size: 14px;
+            font-family: $specialFont;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 15px 0;
+          }
+        }
+
+        input {
+          width: 100%;
+          background: #222;
+          border: 0px solid #1f1f1f;
+          color: #5e5e5e;
+          padding-left: 5px;
+
+          font-size: 14px;
+          font-family: $specialFont;
+          letter-spacing: 1px;
+          @include text-shadow(none);
+        }
+      }
+
+      .popular {
+        margin: -9px 0 -4px 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+server {
+    listen      80;
+    server_name %(hostname)s admin.%(hostname)s api.%(hostname)s;
+
+    access_log  %(log_dir_path)snginx_access.log;
+    error_log   %(log_dir_path)snginx_error.log;
+
+    location /static/ {
+        alias %(static_root)s;
+        expires max;
+    }
+
+    location /media/ {
+        alias %(media_root)s;
+    }
+
+    location = /favicon.ico {
+        rewrite (.*) /static/favicon.ico;
+    }
+
+    location = /robots.txt {
+        rewrite (.*) /static/robots.txt;
+    }
+
+    root %(app_root)s;
+
+    location / {
+        uwsgi_pass 127.0.0.1:%(uwsgi_port)s;
+        include uwsgi_params;
+
+#        auth_basic            "Restricted";
+#        auth_basic_user_file  %(app_root)s.htpasswd;
+    }
+}

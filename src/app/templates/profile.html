@@ -1,0 +1,67 @@
+{% extends "static_page.html" %}
+{% load i18n %}
+
+{% block page_content %}
+  <div class="col-xs-8">
+    <h1>My Profile</h1>
+    {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+              There are some errors, please correct them bellow:
+              {{ message }}
+            </div>
+          {% else %}
+            <div class="alert alert-{{ message.tags }}">
+              <strong>{{ message.tags|title }}!</strong> {{ message }}
+            </div>
+          {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div id="profile" class="container">
+      <div class="row">
+        <form class="form" action="{% url 'profile' %}" method="post" autocomplete="off">
+          {% csrf_token %}
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4">
+                <label for="first_name">First name</label>
+                <input type="text" id="first_name" name="first_name" placeholder="First name" class="form-control" value="{{ form.first_name.value }}">
+              </div>
+              <div class="col-xs-4">
+                <label for="last_name">Last name</label>
+                <input type="text" id="last_name" name="last_name" placeholder="Last name" class="form-control" value="{{ form.last_name.value }}">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-8">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Email" class="form-control" value="{{ form.email.value }}">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-8">
+                <label for="affiliation">Affiliation <span>(Optional)</span></label>
+                <input type="text" id="affiliation" name="affiliation" placeholder="Affiliation" class="form-control" value="{{ form.affiliation.value|default:' ' }}" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4">
+                <label for="new_password">Change Password</label>
+                <input type="password" id="new_password" name="new_password" placeholder="New Password" class="form-control" value="" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-4"></div>
+{% endblock page_content %}

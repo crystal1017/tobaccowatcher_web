@@ -1,0 +1,34 @@
+/*******************************************************
+ ** Footer area
+********************************************************/
+
+.contentinfo {
+  background-color: #fff;
+  padding: 15px 35px;
+  bottom: 0;
+  width: 100%;
+  margin-top: -95px;
+  height: 95px;
+  position: fixed;
+  z-index: 10010;
+  border-top: #8A1623 solid 2px;
+  img {
+    margin: 10px 0 0;
+  }
+  h4 {
+  	font-size: 15px;
+  	font-weight: medium;
+  	margin-bottom: 7px;
+    color: $brand-red;
+  }
+  a {
+  	font-size: 14px;
+  	color: #808080;
+  	font-weight: lighter;
+  	margin-bottom: 0;
+    &:hover {
+      color: $brand-blue;
+      text-decoration: underline;
+    }
+  }
+}

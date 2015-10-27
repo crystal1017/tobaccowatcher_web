@@ -1,0 +1,79 @@
+{% extends "static_page.html" %}
+{% load i18n %}
+
+{% block header_content %}
+<header class="wrap banner sign_in" role="banner">
+  <div class="container">
+    <ul class="navbar">
+      <li{% if active_elem == 'home' %} class="active"{% endif %}>
+      <a href="{% url 'index' %}" class="brand pull-left">
+        <img class="logo_svg" src="/static/images/logo-new.svg">
+        <img class="logo_png" src="/static/images/logo-new.png" style="display: none;">
+        <span class="brand-first__part">Tobacco</span>
+        <span class="brand-sec__part">Watcher</span>
+      </a>
+      </li>
+      <li class="pull-right">
+      <span>Need an account?</span>
+      <a class="create-account-btn" href="{% url 'registration' %}">Create Account</a>
+    </ul>
+  </div>
+</header>
+{% endblock header_content %}
+
+{% block main_content %}
+  <div class="container" role="document">
+    <div class="row text-center">
+      <div class="sign-in-img">
+        <img src="/static/images/sign-in.jpg">
+      </div>
+      <p class="sign-up-text">{% trans "Launching Soon! Tobacco Watcher, designed by the Johns Hopkins University Institute for Global Tobacco Control, is an automated surveillance system for tobacco control. Our computers search the web in dozens of languages for news articles, and identifies each article by tobacco control topic, location, date and language to make media monitoring easier and more effective. By operating continuously in real time, Tobacco Watcher can help you stay on top of a fast changing global landscape. Enter your contact information below to sign up for our invite list." %}</p>
+    </div>
+      <div class="row sign_in_form">
+          <div id="login">
+            <form class="form" action="{% url 'login' %}" method="post">
+              {% csrf_token %}
+              {% if next %}
+                <input type="hidden" name="next" value="{{ next }}" />
+              {% endif %}
+                  <div class="col-md-3">
+                      <label for="username">Email</label>
+                      <input type="text" id="username" name="username" class="form-control">
+                  </div>
+                  <div class="col-md-3">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                  </div>
+                  <div class="col-md-3 form_btn">
+                      <input type="submit" class="sign-in-btn" value="Sign in">
+                  </div>
+                  <div class="col-md-3 form_btn">
+                      <a href="/accounts/password/reset/">Forgot password?</a>
+                  </div>
+            </form>
+          </div>
+      </div>
+  </div>
+{% endblock main_content %}
+
+{% block footer_content %}
+
+<footer class="contentinfo" role="contentinfo">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Contact Us</h4>
+        <p><a href="mailto:contact@tobaccowatcher.org">contact@tobaccowatcher.org</a></p>
+      </div>
+      <div class="col-md-6 text-right">
+        <ul class="list-inline list-unstyled">
+          <li>
+            <a href="http://globaltobaccocontrol.org/" target="_blank"><img src="/static/images/logo-global-tobacco.png" alt="Global Tobacco"/></a>
+          </li>
+          <li>
+            <a href="http://www.jhsph.edu/" target="_blank"><img src="/static/images/logo-john-hopkins.png" alt="John Hopkins"/></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</footer>
+{% endblock footer_content %}

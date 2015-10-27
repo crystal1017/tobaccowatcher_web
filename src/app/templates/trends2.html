@@ -1,0 +1,241 @@
+{% extends "static_page.html" %}
+{% load i18n %}
+
+{% block body_classes %}class="static-page-body page--tobacco-analyses"{% endblock body_classes %}
+
+{% block head_scripts %}
+<!-- build:css(app/static) /static/styles/graphs.css -->
+<link rel="stylesheet" href="bower_components/chosen/public/trends.css">
+<!-- endbuild -->
+<link rel="stylesheet" href="/static/bower_components/select2/dist/css/select2.min.css">
+<link rel="stylesheet" href="/static/bower_components/jquery-date-range-picker/daterangepicker.css">
+{% endblock head_scripts %}
+{% block footer_scripts %}
+<script src="/static/bower_components/moment/min/moment.min.js"></script>
+<script src="/static/bower_components/moment-range/dist/moment-range.min.js"></script>
+<script src="/static/bower_components/select2/dist/js/select2.min.js"></script>
+<script src="/static/bower_components/jquery-date-range-picker/jquery.daterangepicker.js"></script>
+<script src="/static/bower_components/jQuery.dotdotdot/src/js/jquery.dotdotdot.min.js"></script>
+{% endblock footer_scripts %}
+
+{% block page_content %}
+    <div id="tobacco-analyses">
+            <div class="tobacco-analyses" id="trends" data-trend-id="">
+                <div class="title">
+                    Analyses
+                </div>
+                <div class="tobacco-analyses__description">
+                    Add trends to discover insights in Tobacco related media.
+                </div>
+                <div class="tobacco-analyses__trends">
+                    <div class="tobacco-analyses__trend -tpl" data-trend-no="" data-trend-categories="" data-trend-keywords="" data-trend-languages="" data-trend-locations="" data-trend-title="">
+                        <div class="tobacco-analyses__trend__title"></div>
+                        <div class="tobacco-analyses__trend__text"></div>
+                        <div class="tobacco-analyses__trend__color" style="background-color: #1f77b4;"></div>
+                        <div class="tobacco-analyses__trend__remove">×</div>
+                    </div>
+                    <div class="tobacco-analyses__trends__item">
+                        <div class="tobacco-analyses__addtrend">
+                            <p>
+                                <svg viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#911B29" cx="12.5" cy="12.5" r="12.5"/><g transform="translate(4 4.5)" fill="#D8D8D8"><rect x="6.5" width="4" height="16" rx="1"/><rect x=".5" y="6" width="16" height="4" rx="1"/></g></g></svg>Add Trend
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tobacco-analyses__area tobacco-analyses__area--start-screen tobacco-analyses__area--modified">
+                    <div class="tobacco-analyses__area__header">
+                        <h3 class="tobacco-analyses__area__title">
+                            Articles Over Time
+                        </h3>
+                        <span class="tobacco-analyses__area__title-info js-tooltip" title="Numbers represent article counts for the filters you selected relative to all tobacco-related articles in our database. If 10% of articles for the given categories, locations and languages were for &quot;e-cigarettes,&quot; we'd consider this 10. This doesn't convey absolute volumes, which typically increase over time due to increases in global media coverage.">?</span><input class="tobacco-analyses__area__date" type="text" />
+                        <div class="tobacco-analyses__area__header__info">
+                            <p class="tobacco-analyses__area__header__info__text -changes">
+                                You've made changes. Don't forget to save. >
+                            </p>
+                            <p class="tobacco-analyses__area__header__info__text -saved">
+                                Plot Saved
+                            </p>
+                            <div class="tobacco-analyses__area__header__menu">
+                                <div class="tobacco-analyses__area__header__menu__trigger">
+                                    <i></i>
+                                </div>
+                                <ul class="tobacco-analyses__area__header__menu__list">
+                                    <li class="tobacco-analyses__area__header__menu__item tobacco-analyses__area__header__menu__item--save">
+                                        <a class="js-save-to-my-analyses" href="">Save to My Analyses</a>
+                                    </li>
+                                    <li class="tobacco-analyses__area__header__menu__item tobacco-analyses__area__header__menu__item--download">
+                                        <a class="js-download-csv" href="">Download CSV</a>
+                                    </li>
+                                    <li class="tobacco-analyses__area__header__menu__item tobacco-analyses__area__header__menu__item--close">
+                                        <a class="js-close-trend" href="">Close</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tobacco-analyses__area__body">
+                        <div class="tobacco-analyses__area__tooltip" style="display: none;">
+                            <div class="tobacco-analyses__area__tooltip__title">November 2014</div>
+                            <ul>
+                                <li><i style="background-color: red;"></i><strong>Prevalence</strong><b>24</b></li>
+                                <li><i style="background-color: green;"></i><strong>Prevalence</strong><b>24</b></li>
+                            </ul>
+                            <a href="" class="tobacco-analyses__area__tooltip__footer">Related Articles</a>
+                        </div>
+                        <div id="trends-plot" class="trends-plot dc-chart"></div>
+                    </div>
+                    <div class="tobacco-analyses__area__processing">
+                        <div class="tobacco-analyses__area__processing__text">
+                            Calculating Trends<i>.</i><i>.</i><i>.</i>
+                        </div>
+                    </div>
+                    <div class="tobacco-analyses__area__start-screen">
+                            <div class="tobacco-analyses__area__start-screen__item
+                                        tobacco-analyses__area__start-screen__item--add">
+                                    <strong>Add a Trend</strong>
+                                    <p>Use keywords, categories, locations or languages to plot trends.</p>
+                            </div>
+                            <div class="tobacco-analyses__area__start-screen__item
+                                        tobacco-analyses__area__start-screen__item--text">
+                                    <strong>Getting Started</strong>
+                                    <p>
+                                        Tobacco Watcher Analyses allows you to plot trends in tobacco-related media to
+                                        monitor the spread of your campaign or learn about what's trending for
+                                        program planning.
+                                    </p>
+                            </div>
+                            <div class="tobacco-analyses__area__start-screen__item
+                                        tobacco-analyses__area__start-screen__item--saved">
+                                    <strong>Recommended/My Analyses</strong>
+                                    <p>View our recommend analyses or save your own for future reference.</p>
+                            </div>
+                    </div>
+                </div>
+                <div class="tobacco-analyses__aside">
+                    <div class="tobacco-analyses__aside__header">
+                        <div class="tobacco-analyses__aside__tabs">
+                            <a class="tobacco-analyses__aside__tab -active" href="#tobacco-analyses-recommended">Recommended Analyses</a>
+                            <a class="tobacco-analyses__aside__tab" href="#tobacco-analyses-my">My Analyses</a>
+                            <span class="tobacco-analyses__aside__tooltip js-tooltip"
+                                  title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                  Explicabo ut excepturi culpa nostrum, unde hic quae dolorem quaerat
+                                  deserunt aliquam. Nulla earum, dolore modi, iure ab sunt dolores necessitatibus non.">
+                                ?
+                            </span>
+                        </div>
+                        <div class="tobacco-analyses__aside__sorts">
+                            <a class="tobacco-analyses__aside__sort -active" href="" data-sortby="date">Date</a><a class="tobacco-analyses__aside__sort" href="" data-sortby="name">Name</a>
+                        </div>
+                    </div>
+                    <div class="tobacco-analyses__tab-container" id="tobacco-analyses-recommended">
+                        <div class="tobacco-analyses__aside__items">
+                            {% for trend in recommended %}
+                                <div class="tobacco-analyses__aside__item" data-trend-id="{{ trend.id }}" data-sortby-name="{{ trend.id }}" data-sortby-date="{{ trend.created_at|date:'YmdHis' }}">
+                                    <div class="tobacco-analyses__aside__item__title">{{ trend.id }}</div>
+                                    <div class="tobacco-analyses__aside__item__preview">{{ trend.preview|safe }}</div>
+                                    <div class="tobacco-analyses__aside__item__current">Currently Viewing</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="tobacco-analyses__tab-container -hidden" id="tobacco-analyses-my">
+                        <div class="tobacco-analyses__aside__items">
+                            {% for trend in trends %}
+                                <div class="tobacco-analyses__aside__item" data-trend-id="{{ trend.id }}" data-sortby-name="{{ trend.id }}" data-sortby-date="{{ trend.created_at|date:'YmdHis' }}">
+                                    <div class="tobacco-analyses__aside__item__title">{{ trend.id }}</div>
+                                    <div class="tobacco-analyses__aside__item__preview">{{ trend.preview|safe }}</div>
+                                    <div class="tobacco-analyses__aside__item__remove">×</div>
+                                    <div class="tobacco-analyses__aside__item__current">Currently Viewing</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="modalwin -hidden" data-type="create">
+            <form class="modalwin__body">
+                {% csrf_token %}
+                <div class="modalwin__header">
+                    <div class="modalwin__title" data-txt-create="Create Trend" data-txt-edit="Edit Trend"></div>
+                    <p>Select one or more filters to plot a trend line</p>
+                </div>
+                <div class="modalwin__field modalwin__field--keywords">
+                    <label>
+                        Keywords
+                        <span class="tobacco-analyses__aside__tooltip js-tooltip"
+                              title="">?</span>
+                    </label>
+                    <div class="modalwin__field__block">
+                        <input name="t" class="js-trends-form-keywords" placeholder="Enter search terms..." type="text" />
+                    </div>
+                </div>
+                <div class="modalwin__field modalwin__field--categories">
+                    <label>Categories</label>
+                    <div class="modalwin__field__block">
+                        <select name="c" class="js-trends-form-categories" data-placeholder="Choose Categories..." multiple="multiple">
+                            <option></option>
+                            {% for c in categories %}
+                            {% if c.id != 'other' %}
+                            <option value="{{ c.id }}">{{ c.name }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="modalwin__field modalwin__field--locations">
+                    <label>
+                        Locations
+                        <span class="tobacco-analyses__aside__tooltip js-tooltip"
+                              title="Selects the source language. We translate all article into English, so your keywords search the translations.">?</span>
+                    </label>
+                    <div class="modalwin__field__block">
+                        <select name="r" class="js-trends-form-locations" data-placeholder="Choose Locations..." multiple="multiple">
+                            <option></option>
+                            <optgroup label="REGIONS">
+                                {% for r in regions %}
+                                <option value="{{ r.id }}">{{ r.name }}</option>
+                                {% endfor %}
+                            </optgroup>
+                            {% for r in regions %}
+                            <optgroup label="{{ r.name|upper }}">
+                                {% for c in r.countries %}
+                                <option value="{{ c.id }}">{{ c.name }}</option>
+                                {% endfor %}
+                            </optgroup>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="modalwin__field modalwin__field--languages">
+                    <label>Languages</label>
+                    <div class="modalwin__field__block">
+                        <select name="la" class="js-trends-form-languages" data-placeholder="Choose Languages..." multiple="multiple">
+                            <option></option>
+                            {% for l in languages %}
+                            <option value="{{ l.id }}">{{ l.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="modalwin__field modalwin__field--title">
+                    <label>Trend Title</label>
+                    <div class="modalwin__field__block">
+                        <input name="title" class="js-trends-form-title" placeholder="Enter a title for your trend..." type="text" />
+                    </div>
+                </div>
+                <div class="modalwin__footer">
+                    <div class="modalwin__footer__left">
+                        <button class="js-trend-remove" data-modal-type="edit" type="button">Delete</button>
+                    </div>
+                    <div class="modalwin__footer__right">
+                        <button class="js-view-article" data-modal-type="edit" type="button">View Articles</button>
+                        <button class="-red js-trend-add" data-modal-type="edit,create" type="submit">Plot</button>
+                    </div>
+                </div>
+                <div class="modalwin__close">×</div>
+            </form>
+            <div class="modalwin__shadow"></div>
+</div>
+</div>
+
+{% endblock page_content %}

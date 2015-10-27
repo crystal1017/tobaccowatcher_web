@@ -1,0 +1,89 @@
+{% extends "static_page.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Register" %}{% endblock %}
+
+{% block header_content %}
+<header class="wrap banner sign_in" role="banner">
+  <div class="container">
+    <ul class="navbar">
+      <li{% if active_elem == 'home' %} class="active"{% endif %}>
+      <a href="{% url 'index' %}" class="brand pull-left">
+        <img class="logo_svg" src="/static/images/logo-new.svg">
+        <img class="logo_png" src="/static/images/logo-new.png" style="display: none;">
+        <span class="brand-first__part">Tobacco</span>
+        <span class="brand-sec__part">Watcher</span>
+      </a>
+      </li>
+      <li class="pull-right">
+        <span>Have an account?</span>
+        <a class="create-account-btn"
+           href="{% url 'login' %}{% if messages.request.GET.next %}?next={{ messages.request.GET.next }}{% endif %}">
+            Sign in
+        </a>
+    </ul>
+  </div>
+</header>
+{% endblock header_content %}
+
+{% block main_content %}
+  <div class="container" role="document">
+      <div class="row text-center">
+      <div class="sign-in-img">
+        <img src="/static/images/sign-in.jpg">
+      </div>
+      <p class="sign-up-text">{% trans "Launching Soon! Tobacco Watcher, designed by the Johns Hopkins University Institute for Global Tobacco Control, is an automated surveillance system for tobacco control. Our computers search the web in dozens of languages for news articles, and identifies each article by tobacco control topic, location, date and language to make media monitoring easier and more effective. By operating continuously in real time, Tobacco Watcher can help you stay on top of a fast changing global landscape. Enter your contact information below to sign up for our invite list." %}</p>
+      </div>
+      <div class="row sign_in_form">
+        <div id="registration">
+          <form action="" method="post" class="registration-form">{% csrf_token %}
+            <div class="col-md-2">
+              <label for="first_name">First Name</label>
+              {{ form.first_name }}
+            </div>
+            <div class="col-md-2">
+              <label for="last_name">Last Name</label>
+              {{ form.last_name }}
+            </div>
+            <div class="col-md-3">
+              <label for="email">Email</label>
+              {{ form.email }}
+              <div class="form_mail_errors" style="display: none;"></div>
+            </div>
+            <div class="col-md-3">
+              <label for="affiliation">Affiliation</label>
+              {{ form.affiliation }}
+            </div>
+            <div class="col-md-2 form_btn">
+              <input type="submit" class="sign-in-btn" value="{% trans 'Submit' %}">
+            </div>
+          </form>
+          <div class="reg-success-dialog text-center" style="display: none;">
+            <h4><strong>Thank you for your request.</strong></h4>
+            <h4><strong>We'll be in touch.</strong></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block footer_content %}
+<footer class="contentinfo" role="contentinfo">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Contact Us</h4>
+        <p><a href="mailto:contact@tobaccowatcher.org">contact@tobaccowatcher.org</a></p>
+      </div>
+      <div class="col-md-6 text-right">
+        <ul class="list-inline list-unstyled">
+          <li>
+            <a href="http://globaltobaccocontrol.org/" target="_blank"><img src="/static/images/logo-global-tobacco.png" alt="Global Tobacco"/></a>
+          </li>
+          <li>
+            <a href="http://www.jhsph.edu/" target="_blank"><img src="/static/images/logo-john-hopkins.png" alt="John Hopkins"/></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</footer>
+{% endblock footer_content %}
